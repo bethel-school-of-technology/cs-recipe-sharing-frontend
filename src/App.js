@@ -4,6 +4,7 @@ import './App.css';
 
 import Navbar from './navbar/Navbar';
 import AboutPageView from './pages/About/About';
+import login from './pages/Login/login';
 import RecipeHomePageView from './pages/Recipes/Recipes';
 
 
@@ -14,6 +15,7 @@ function App() {
       <Navbar />
       <Switch>
         <Route path="/about" component={AboutPageView} />
+        <Route path="/login" component={login}/>
       </Switch>
     </div>
     </Router>
