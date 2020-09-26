@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios'
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router';
+import './login.css';
+
 
 
 
@@ -34,14 +36,22 @@ const Login = withRouter(({ history }) => {
         }
     };
     return (
-        <div>
-            <h3>Please Login</h3>
+        <div class="login-div">
+        <div class="title">Please Login</div>
+         
             <form onSubmit={handleSubmit}>
+               <div class= "emailInput">
                 <input placeholder="Enter email" type="text" value={email} onChange={e => setEmailname(e.target.value)} /> 
+                </div>
+            <br/>
+               <div class="usernameInput">
                 <input placeholder="Enter username" type="text" value={username} onChange={e => setUsername(e.target.value)} />
+               </div>
+            <br/>
+               <div class="passwordInput">
                 <input placeholder="Enter password" type="password" value={password} onChange={e => setPassword(e.target.value)} />
-              <button className="btn" >Login</button>
-            </form>
+             </div>
+             </form>
         </div>
     )
 })

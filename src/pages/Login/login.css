@@ -1,0 +1,36 @@
+.login-div {
+    margin:align-left;
+    width:200px;
+    height: 375px;
+    padding: 60px 20px 20px 35px;
+    border-radius: 13px;
+    background: linear-gradient(225deg, #ddd7d7, #ffffff);
+    box-shadow:  -5px 5px 15px #cfc9c9, 
+             5px -5px 15px #ffffff;
+}
+  
+  .title {
+    text-align: center;
+    font-size: 28px;
+    padding-top: 24px;
+    letter-spacing: 0.5px;
+  }
+
+  .fields {
+    width: 100%;
+    padding: 75px 5px 5px 5px;
+  }
+  .emailInput {
+    border: none;
+    outline:none;
+    background: none;
+    font-size: 18px;
+    color: #555;
+    padding:20px 10px 20px 5px;
+  }
+  .usernameInput, .passwordInput {
+    margin-bottom: 30px;
+    border-radius: 25px;
+    box-shadow: inset 8px 8px 8px #cbced1,
+                inset -8px -8px 8px #ffffff;
+  }
