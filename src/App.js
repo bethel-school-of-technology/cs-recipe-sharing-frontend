@@ -16,6 +16,7 @@ function App() {
       <Switch>
         <Route path="/about" component={AboutPageView} />
         <Route path="/login" component={login}/>
+        <Route path="/Recipes" component={RecipeHomePageView}/>
       </Switch>
     </div>
     </Router>

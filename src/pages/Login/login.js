@@ -6,10 +6,11 @@ import './login.css';
 
 
 
+
+
 const Login = withRouter(({ history }) => {
     
     const [email, setEmailname] = useState("");
-    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     
     const url = "http://localhost:8080"
@@ -17,7 +18,6 @@ const Login = withRouter(({ history }) => {
         e.preventDefault();
         let user = {
             email:email,
-            username: username,
             password: password
         };
           
@@ -26,7 +26,7 @@ const Login = withRouter(({ history }) => {
         if(response.status === 200){
             // Need to store jwt in localstorage
             localStorage.setItem('logininfo', response.headers.authorization);
-            localStorage.setItem('user', user.username);
+            localStorage.setItem('email', user.emailName);
             window.alert("You're logged in!");
             
         }
@@ -37,22 +37,26 @@ const Login = withRouter(({ history }) => {
     };
     return (
         <div class="login-div">
+        <img src="/public/codecheflogo.jpg" alt=""></img>
         <div class="title">Please Login</div>
-         
+              <br/>
+              <br/>
+
             <form onSubmit={handleSubmit}>
                <div class= "emailInput">
                 <input placeholder="Enter email" type="text" value={email} onChange={e => setEmailname(e.target.value)} /> 
                 </div>
             <br/>
-               <div class="usernameInput">
-                <input placeholder="Enter username" type="text" value={username} onChange={e => setUsername(e.target.value)} />
-               </div>
-            <br/>
                <div class="passwordInput">
                 <input placeholder="Enter password" type="password" value={password} onChange={e => setPassword(e.target.value)} />
              </div>
+             <br/>
+             <br/>
+             <br/>
+             <button onClick={handleSubmit}>Submit</button>
              </form>
         </div>
+
     )
 })
 export default withRouter(Login);
