@@ -37,7 +37,6 @@ const Login = withRouter(({ history }) => {
     };
     return (
         <div class="login-div">
-        <img src="/public/codecheflogo.jpg" alt=""></img>
         <div class="title">Please Login</div>
               <br/>
               <br/>

@@ -1,5 +1,5 @@
 .login-div {
-    margin: 225px 50px 75px 650px;
+    margin: 225px 50px 75px 700px;
     width:200px;
     height: 200px;
     padding: 100px 20px 120px 35px;
@@ -12,13 +12,14 @@
     
 }
   
-.title {
-    font-size: larger;
-   text-align:center ;
-   vertical-align: middle;
-   align-self: top;
-}
 
-.img {
-  size: 700px;
+.title {
+  font-family: Impact, sans-serif;
+  color:black;
+  text-shadow: 3px -6px 11px rgba(0, 0, 0, 0.44);
+  font-size: xx-large;
+
+}
+.btn {
+  
 }
