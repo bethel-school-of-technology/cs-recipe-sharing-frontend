@@ -13,6 +13,7 @@ function App() {
     <div>
       <Navbar />
       <Switch>
+        <Route path="/" component={RecipeHomePageView} />
         <Route path="/about" component={AboutPageView} />
       </Switch>
     </div>

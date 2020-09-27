@@ -1,0 +1,62 @@
+.main-body {
+    height:100vh;
+    width:100%;
+}
+.header{
+    display: flex;
+    justify-content: center;
+    height:20%;
+}
+.col-1-2{
+    width:50%;
+    border:1px solid black;
+}
+.title{
+    height:100%;
+    margin:0px;
+    padding:0px;
+}
+.recipes-container {
+    padding:40px;
+    display:flex;
+    justify-content: center}
+.recipe-card {
+    
+    _border:1px solid black;
+    margin:0px 80px;
+}
+.recipe-card .recipe-image {
+    width:400px;
+    height:200px;
+    _border:1px solid black;
+    display:flex;
+    justify-content: center;
+}
+.recipe-card .recipe-image img{
+    width:auto;
+    height:100%;
+}
+.recipe-card .recipe-body {
+    width:400px;
+    height:150px;
+    _border:1px solid black;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.recipe-body .recipe-title {
+    font-size:24px;
+}
+.recipe-body .recipe-author {
+    font-size:18px;
+    margin-top:5px;
+}
+.recipe-body .recipe-stats {
+    width:100%;
+    margin-top:10px;
+    display:flex;
+    justify-content: center;
+}
+.recipe-body .recipe-stats .cook-time, .difficulty{
+    margin:0px 20px;
+}
