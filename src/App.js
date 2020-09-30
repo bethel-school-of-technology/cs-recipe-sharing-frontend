@@ -14,6 +14,7 @@ function App() {
     <div>
       <Navbar />
       <Switch>
+        <Route path="/" component={RecipeHomePageView} />
         <Route path="/about" component={AboutPageView} />
         <Route path="/login" component={login}/>
       </Switch>
