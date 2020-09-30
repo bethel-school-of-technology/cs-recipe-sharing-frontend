@@ -1,22 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <ul>
-          <li>Recipes</li>
-          <li>Share Recipe</li>
-          <li>My Recipes</li>
-          <li>About</li>          
-          <li>Login/Sign Up</li>  
-        </ul>
-        {this.props.children}
-      </div>
-    );
-  }
+import Navbar from './navbar/Navbar';
+import AboutPageView from './pages/About/About';
+import RecipeHomePageView from './pages/Recipes/Recipes';
+
+
+function App() {
+  return (
+    <Router>
+    <div>
+      <Navbar />
+      <Switch>
+        <Route path="/" component={RecipeHomePageView} />
+        <Route path="/about" component={AboutPageView} />
+      </Switch>
+    </div>
+    </Router>
+  );
 }
 
 export default App;
