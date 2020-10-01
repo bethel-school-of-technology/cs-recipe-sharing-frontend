@@ -1,17 +1,21 @@
 import React from 'react';
 import styles from './style.css';
+import FA from 'react-fontawesome';
+
 
 const SearchBarComponent = ({handleSearch}) => {
     return(
         <div className="search-bar">
-            Search: <input onChange={handleSearch} type="text" />
+            
+            Search for Recipe: &nbsp;<input onChange={handleSearch} type="text" />
+            <FA className="search-icon" name="search" />
         </div>
     )
 }
 
 const RecipesSharedTitle = ({numberOfRecipes}) => {
     return(
-        <h1 className="title">Recipes Shared ({numberOfRecipes})</h1>
+        <div className="title">Recipes Shared ({numberOfRecipes})</div>
     )
 }
 
@@ -37,7 +41,7 @@ const Recipe = ({recipe}) => {
 const ViewRecipeCardsComponent = ({recipes}) => {
     if(recipes.length === 0){
         return(
-            <h1>No Matches</h1>
+            <h1 className="no-matches">No Matches</h1>
         )
     }
     else{
@@ -112,16 +116,13 @@ class RecipeHomePageView extends React.Component {
         return(
             <div className="main-body">
                 <div className="header">
-                    <div className="col-1-2">
                         <RecipesSharedTitle numberOfRecipes={howManyRecipes} />
-                    </div>
-                    <div className="col-1-2">
                         <SearchBarComponent handleSearch={this.handleSearch.bind(this)} />
-                    </div>
                 </div>
-                
-                <div className="recipes-container">
-                    <ViewRecipeCardsComponent recipes={this.state.filtered_recipes} />
+                <div className="flex-center">
+                    <div className="recipes-container">
+                        <ViewRecipeCardsComponent recipes={this.state.filtered_recipes} />
+                    </div>
                 </div>
             </div>
         )
