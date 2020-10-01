@@ -62,11 +62,11 @@ class RecipeHomePageView extends React.Component {
             recipes: [],
             filtered_recipes: [],
             search_filter: "",
-            isLoading: true,
+            isLoading: false
         }
     }
     async componentDidMount(){
-        let url = "http://localhost:3001/recipes";
+        let url = "http://localhost:3000/recipes";
         try {
             const response = await fetch(url);
             const recipe_data = await response.json();
