@@ -5,26 +5,49 @@
 .header{
     display: flex;
     justify-content: center;
-    height:20%;
+    height:15%;
 }
-.col-1-2{
-    width:50%;
-    border:1px solid black;
-}
-.title{
+.title {
     height:100%;
-    margin:0px;
-    padding:0px;
-}
-.recipes-container {
-    padding:40px;
     display:flex;
-    justify-content: center}
-.recipe-card {
-    
-    _border:1px solid black;
-    margin:0px 80px;
+    align-items: center;
+    font-size:2em;
+    margin-right:50px;
 }
+.search-bar {
+    display:flex;
+    align-items: center;
+    font-size:1.5em;
+    margin-left:50px;
+    position: relative;
+}
+.search-bar input {
+    width:180px;
+    height:20px;
+    border-radius: 25px;
+}
+.search-icon {
+    font-size:16px;
+    position: absolute;
+    right:10px;
+}
+
+.no-matches {
+    margin: 0 auto;
+}
+
+.recipes-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+.recipe-card {
+    flex: 0 0 200px;
+    margin: 10px;
+    _border: 1px solid #ccc;
+    box-shadow:  2px 2px 6px 0px rgba(0,0,0,0,0.3);
+}
+
 .recipe-card .recipe-image {
     width:400px;
     height:200px;
@@ -59,4 +82,9 @@
 }
 .recipe-body .recipe-stats .cook-time, .difficulty{
     margin:0px 20px;
+}
+
+.flex-center {
+    margin: 0 auto;
+    width:90%;
 }
