@@ -1,6 +1,7 @@
 import React from 'react';
-import styles from './style.css';
+import  './style.css';
 import FA from 'react-fontawesome';
+import axios from 'axios';
 
 
 const SearchBarComponent = ({handleSearch}) => {
@@ -23,7 +24,8 @@ const Recipe = ({recipe}) => {
     return(
         <div className="recipe-card">
             <div className="recipe-image">
-                <img alt="recipe" src={require(`../../${recipe.image_url}`)} />
+                <img src={require(`../../assets/images/bacon-squash.jpg`)} />
+                {/**<img alt="recipe" src={require(`../../${recipe.image}`)} /> */}
             </div>
             <div className="recipe-body">
                 <div className="recipe-title">{recipe.title}</div>
@@ -33,7 +35,6 @@ const Recipe = ({recipe}) => {
                     <div className="difficulty">Difficulty: {recipe.difficulty}</div>
                 </div>
             </div>
-            {/*<img src={require(`../../${recipe.image_url}`)} />*/}
         </div>
     )
 }
@@ -66,19 +67,17 @@ class RecipeHomePageView extends React.Component {
         }
     }
     async componentDidMount(){
-        let url = "http://localhost:3001/recipes";
-        try {
-            const response = await fetch(url);
-            const recipe_data = await response.json();
-            this.setState({
-                recipes: this.state.recipes.concat(recipe_data),
-                filtered_recipes: this.state.filtered_recipes.concat(recipe_data),
-                isLoading: false
-            })
-        }
-        catch(error){
-            console.log(error)
-        }
+        let url = "http://localhost:8080/api/recipe/";
+        const response = await axios ({
+            url: url,
+            method: "GET"
+        })
+        console.log(response.data)
+        this.setState({
+            recipes: response.data,
+            filtered_recipes: response.data,
+            isLoading: false
+        })
     }
 
     handleSearch(e){
@@ -120,7 +119,7 @@ class RecipeHomePageView extends React.Component {
                         <SearchBarComponent handleSearch={this.handleSearch.bind(this)} />
                 </div>
                 <div className="flex-center">
-                    <div className="recipes-container">
+                    <div className="recipes-container"></div>
                         <ViewRecipeCardsComponent recipes={this.state.filtered_recipes} />
                     </div>
                 </div>
