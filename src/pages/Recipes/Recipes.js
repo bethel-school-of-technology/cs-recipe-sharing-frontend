@@ -119,7 +119,7 @@ class RecipeHomePageView extends React.Component {
                         <SearchBarComponent handleSearch={this.handleSearch.bind(this)} />
                 </div>
                 <div className="flex-center">
-                    <div className="recipes-container"></div>
+                    <div className="recipes-container">
                         <ViewRecipeCardsComponent recipes={this.state.filtered_recipes} />
                     </div>
                 </div>
