@@ -89,6 +89,96 @@
             "directions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisi scelerisque eu ultrices vitae auctor eu augue. Gravida in fermentum et sollicitudin ac orci. Arcu cursus euismod quis viverra. Pulvinar pellentesque habitant morbi tristique senectus. Tincidunt arcu non sodales neque sodales. Id ornare arcu odio ut. Etiam erat velit scelerisque in dictum. Morbi non arcu risus quis varius quam quisque id diam.",
             "author": "testuser",
             "authorID": 34
+        },
+        {
+            "id": 4,
+            "time_created": "9-22-2020",
+            "title": "Very Tasty Dish!",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Habitasse platea dictumst vestibulum rhoncus.",
+            "servingSize": 4,
+            "cookTime": "25 min",
+            "difficulty": "easy",
+            "image_url": "assets/images/bacon-squash.jpg",
+            "ingredients": [
+                {
+                    "name":"pepper",
+                    "amount": 3,
+                    "measurement": "2 tablespoons"
+                },
+                {
+                    "name":"squash",
+                    "amount": 1,
+                    "measurement": "1 cup"
+                },
+                {
+                    "name":"salt",
+                    "amount": 1,
+                    "measurement": "3 tablespoons"
+                }
+            ],
+            "directions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisi scelerisque eu ultrices vitae auctor eu augue. Gravida in fermentum et sollicitudin ac orci. Arcu cursus euismod quis viverra. Pulvinar pellentesque habitant morbi tristique senectus. Tincidunt arcu non sodales neque sodales. Id ornare arcu odio ut. Etiam erat velit scelerisque in dictum. Morbi non arcu risus quis varius quam quisque id diam.",
+            "author": "testuser",
+            "authorID": 34
+        },
+        {
+            "id": 5,
+            "time_created": "9-22-2020",
+            "title": "Bacon Cesar Salad",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Habitasse platea dictumst vestibulum rhoncus.",
+            "servingSize": 4,
+            "cookTime": "25 min",
+            "difficulty": "easy",
+            "image_url": "assets/images/bacon-squash.jpg",
+            "ingredients": [
+                {
+                    "name":"pepper",
+                    "amount": 3,
+                    "measurement": "2 tablespoons"
+                },
+                {
+                    "name":"squash",
+                    "amount": 1,
+                    "measurement": "1 cup"
+                },
+                {
+                    "name":"salt",
+                    "amount": 1,
+                    "measurement": "3 tablespoons"
+                }
+            ],
+            "directions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisi scelerisque eu ultrices vitae auctor eu augue. Gravida in fermentum et sollicitudin ac orci. Arcu cursus euismod quis viverra. Pulvinar pellentesque habitant morbi tristique senectus. Tincidunt arcu non sodales neque sodales. Id ornare arcu odio ut. Etiam erat velit scelerisque in dictum. Morbi non arcu risus quis varius quam quisque id diam.",
+            "author": "testuser",
+            "authorID": 34
+        },
+        {
+            "id": 6,
+            "time_created": "9-22-2020",
+            "title": "More Bacon",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Habitasse platea dictumst vestibulum rhoncus.",
+            "servingSize": 4,
+            "cookTime": "25 min",
+            "difficulty": "easy",
+            "image_url": "assets/images/bacon-squash.jpg",
+            "ingredients": [
+                {
+                    "name":"pepper",
+                    "amount": 3,
+                    "measurement": "2 tablespoons"
+                },
+                {
+                    "name":"squash",
+                    "amount": 1,
+                    "measurement": "1 cup"
+                },
+                {
+                    "name":"salt",
+                    "amount": 1,
+                    "measurement": "3 tablespoons"
+                }
+            ],
+            "directions": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nisi scelerisque eu ultrices vitae auctor eu augue. Gravida in fermentum et sollicitudin ac orci. Arcu cursus euismod quis viverra. Pulvinar pellentesque habitant morbi tristique senectus. Tincidunt arcu non sodales neque sodales. Id ornare arcu odio ut. Etiam erat velit scelerisque in dictum. Morbi non arcu risus quis varius quam quisque id diam.",
+            "author": "testuser",
+            "authorID": 34
         }
     ]
 }

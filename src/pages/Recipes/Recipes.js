@@ -1,17 +1,22 @@
 import React from 'react';
-import styles from './style.css';
+import  './style.css';
+import FA from 'react-fontawesome';
+import axios from 'axios';
+
 
 const SearchBarComponent = ({handleSearch}) => {
     return(
         <div className="search-bar">
-            Search: <input onChange={handleSearch} type="text" />
+            
+            Search for Recipe: &nbsp;<input onChange={handleSearch} type="text" />
+            <FA className="search-icon" name="search" />
         </div>
     )
 }
 
 const RecipesSharedTitle = ({numberOfRecipes}) => {
     return(
-        <h1 className="title">Recipes Shared ({numberOfRecipes})</h1>
+        <div className="title">Recipes Shared ({numberOfRecipes})</div>
     )
 }
 
@@ -19,7 +24,8 @@ const Recipe = ({recipe}) => {
     return(
         <div className="recipe-card">
             <div className="recipe-image">
-                <img alt="recipe" src={require(`../../${recipe.image_url}`)} />
+                <img src={require(`../../assets/images/bacon-squash.jpg`)} />
+                {/**<img alt="recipe" src={require(`../../${recipe.image}`)} /> */}
             </div>
             <div className="recipe-body">
                 <div className="recipe-title">{recipe.title}</div>
@@ -29,7 +35,6 @@ const Recipe = ({recipe}) => {
                     <div className="difficulty">Difficulty: {recipe.difficulty}</div>
                 </div>
             </div>
-            {/*<img src={require(`../../${recipe.image_url}`)} />*/}
         </div>
     )
 }
@@ -37,7 +42,7 @@ const Recipe = ({recipe}) => {
 const ViewRecipeCardsComponent = ({recipes}) => {
     if(recipes.length === 0){
         return(
-            <h1>No Matches</h1>
+            <h1 className="no-matches">No Matches</h1>
         )
     }
     else{
@@ -62,6 +67,7 @@ class RecipeHomePageView extends React.Component {
         }
     }
     async componentDidMount(){
+<<<<<<< HEAD
         let url = "http://localhost:3000/recipes";
         try {
             const response = await fetch(url);
@@ -75,6 +81,19 @@ class RecipeHomePageView extends React.Component {
         catch(error){
             console.log(error)
         }
+=======
+        let url = "http://localhost:8080/api/recipe/";
+        const response = await axios ({
+            url: url,
+            method: "GET"
+        })
+        console.log(response.data)
+        this.setState({
+            recipes: response.data,
+            filtered_recipes: response.data,
+            isLoading: false
+        })
+>>>>>>> 56e9f21a9d56cf24e884591c4ec9733fcc20272e
     }
 
     handleSearch(e){
@@ -112,16 +131,13 @@ class RecipeHomePageView extends React.Component {
         return(
             <div className="main-body">
                 <div className="header">
-                    <div className="col-1-2">
                         <RecipesSharedTitle numberOfRecipes={howManyRecipes} />
-                    </div>
-                    <div className="col-1-2">
                         <SearchBarComponent handleSearch={this.handleSearch.bind(this)} />
-                    </div>
                 </div>
-                
-                <div className="recipes-container">
-                    <ViewRecipeCardsComponent recipes={this.state.filtered_recipes} />
+                <div className="flex-center">
+                    <div className="recipes-container">
+                        <ViewRecipeCardsComponent recipes={this.state.filtered_recipes} />
+                    </div>
                 </div>
             </div>
         )
