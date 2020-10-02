@@ -9,6 +9,7 @@ import RecipeHomePageView from './pages/Recipes/Recipes';
 import ShareRecipe from './pages/Share-A-Recipe/Share-Recipe';
 
 
+
 function App() {
   return (
     <Router>
@@ -26,7 +27,7 @@ function App() {
   );
 }
 
-export default App;
+export {App};
 
 class Recipes extends Component {
   render() {
@@ -38,7 +39,7 @@ class Recipes extends Component {
   } 
 }
 
-export default Recipes;
+export {Recipes};
 
 class ShareRecipe extends Component {
   render(){
@@ -50,7 +51,7 @@ class ShareRecipe extends Component {
   }
 }
 
-export default ShareRecipe;
+export {ShareRecipe};
 
 class MyRecipes extends Component {
   render() {
@@ -62,7 +63,7 @@ class MyRecipes extends Component {
   }
 }
 
-export default MyRecipes;
+export {MyRecipes};
 
 class About extends Component {
   render() {
@@ -74,7 +75,7 @@ class About extends Component {
   }
 }
 
-export default About;
+export {About};
 
 class LoginSignUp extends Component {
   render() {
@@ -86,19 +87,19 @@ class LoginSignUp extends Component {
   }
 }
 
-export default LoginSignUp;
+export {LoginSignUp};
 
 ReactDOM.render((
   <Router history = {browserHistory}>
     <Route path = "/" component = {App}>
       <IndexRout component = {Recipes} />
       <Route path = "recipes" component = {Recipes} />
-      <Route path = "sharerecipe" component = {ShareRecipe} />
-      <Route path = "myrecipes" component = {MyRecipes} />
+      <Route path = "share-recipe" component = {ShareRecipe} />
+      <Route path = "my-recipes" component = {MyRecipes} />
       <Route path = "about" component = {About} />
       <Route path = "loginsignup" component = {LoginSignup} />
      </Route>
   </Router>
 ), document.getElementById('app'))
 
-export default App;
+export default App
