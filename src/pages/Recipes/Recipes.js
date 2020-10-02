@@ -63,7 +63,7 @@ class RecipeHomePageView extends React.Component {
             recipes: [],
             filtered_recipes: [],
             search_filter: "",
-            isLoading: true,
+            isLoading: false
         }
     }
     async componentDidMount(){
