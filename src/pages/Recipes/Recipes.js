@@ -67,21 +67,6 @@ class RecipeHomePageView extends React.Component {
         }
     }
     async componentDidMount(){
-<<<<<<< HEAD
-        let url = "http://localhost:3000/recipes";
-        try {
-            const response = await fetch(url);
-            const recipe_data = await response.json();
-            this.setState({
-                recipes: this.state.recipes.concat(recipe_data),
-                filtered_recipes: this.state.filtered_recipes.concat(recipe_data),
-                isLoading: false
-            })
-        }
-        catch(error){
-            console.log(error)
-        }
-=======
         let url = "http://localhost:8080/api/recipe/";
         const response = await axios ({
             url: url,
@@ -93,7 +78,6 @@ class RecipeHomePageView extends React.Component {
             filtered_recipes: response.data,
             isLoading: false
         })
->>>>>>> 56e9f21a9d56cf24e884591c4ec9733fcc20272e
     }
 
     handleSearch(e){
