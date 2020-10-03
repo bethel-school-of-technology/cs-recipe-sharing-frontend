@@ -2,12 +2,12 @@ import React from 'react';
 import  './style.css';
 import FA from 'react-fontawesome';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 
 const SearchBarComponent = ({handleSearch}) => {
     return(
         <div className="search-bar">
-            
             Search for Recipe: &nbsp;<input onChange={handleSearch} type="text" />
             <FA className="search-icon" name="search" />
         </div>
@@ -128,4 +128,4 @@ class RecipeHomePageView extends React.Component {
     }
 }
     
-export default RecipeHomePageView;
+export default withRouter(RecipeHomePageView);

@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 const AboutPageView = () => {
     return (
@@ -6,4 +7,4 @@ const AboutPageView = () => {
     )
 }
 
-export default AboutPageView;
+export default withRouter(AboutPageView);

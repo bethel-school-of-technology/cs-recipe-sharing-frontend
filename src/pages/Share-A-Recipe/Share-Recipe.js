@@ -24,8 +24,8 @@ const ShareRecipe = withRouter(({ history }) => {
     const [directions, setDirections] = useState("");
     const [author, setAuthor] = useState("");
     const [authorId, setAuthorId] = useState(2);
-      
-    
+
+
     const url = "http://localhost:8080";
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -38,39 +38,39 @@ const ShareRecipe = withRouter(({ history }) => {
         );
         axios.post('../../assets/images/uploads/', formData);*/
         let recipe = {
-           title: title,
-           description: description,
-           servingSize: servingSize,
-           cookTime: cookTime,
-           difficulty: difficulty,
-           ingredients: ingredients,
-           image: "../../assets/images/uploads",
-           directions: directions,
-           author: author,
-           authorId: authorId
+            title: title,
+            description: description,
+            servingSize: servingSize,
+            cookTime: cookTime,
+            difficulty: difficulty,
+            ingredients: ingredients,
+            image: "../../assets/images/uploads",
+            directions: directions,
+            author: author,
+            authorId: authorId
         }
         //need to add the token
         let headers = {
             authorization: `Bearer ${localStorage.getItem('logininfo')}`
         }
         //need to format the ingredients
-        let response = await axios.post(`${url}/api/recipe/add/`, recipe, {headers: headers});
-        if(response.status === 200){
+        let response = await axios.post(`${url}/api/recipe/add/`, recipe, { headers: headers });
+        if (response.status === 200) {
             window.alert("Thanks for sharing!");
         }
-        else{
+        else {
             window.alert("Something went wrong. Try again.");
         }
     };
     return (
         <div className="page-container">
-                <div className="title">Share Your Favorite Recipe</div>
-                <form onSubmit={handleSubmit}>
-                    <div className="recipeFormContainer">
-                        <div className="row1">
-                            <div className="recipeFormLeft">
-                    
-                            <input placeholder="Recipe Name" type="text" value={title} onChange={e => setTitle(e.target.value)} /> 
+            <div className="title">Share Your Favorite Recipe</div>
+            <form onSubmit={handleSubmit}>
+                <div className="recipeFormContainer">
+                    <div className="row1">
+                        <div className="recipeFormLeft">
+
+                            <input placeholder="Recipe Name" type="text" value={title} onChange={e => setTitle(e.target.value)} />
 
                             <input placeholder="Recipe Description" type="text" value={description} onChange={e => setDescription(e.target.value)} />
 
@@ -82,25 +82,25 @@ const ShareRecipe = withRouter(({ history }) => {
                                 <option value="Easy">Easy</option>
                                 <option value="Medium">Medium</option>
                                 <option value="Hard">Hard</option>
-                            </select>                   
-                            </div>
-                            <div className="fileUpload">
-                                <label>Upload a picture for your recipe!</label>
-                            <input type="file" onChange={e => setImage(e.target.files[0])} />
-                            </div>
-                            </div>
-                            <div className="row2">
-                        <div className="bottomSection">
-                        <input placeholder="Text Field" type="text" value={ingredients} onChange={e => setIngredients(e.target.value)} />
-                        <input placeholder="Text Field" type="text" value={directions} onChange={e => setDirections(e.target.value)} />
-                        <input placeholder="Text Field" type="text" value={author} onChange={e => setAuthor(e.target.value)} />
+                            </select>
                         </div>
-                    <button>Submit</button>
+                        <div className="fileUpload">
+                            <label>Upload a picture for your recipe!</label>
+                            <input type="file" onChange={e => setImage(e.target.files[0])} />
+                        </div>
                     </div>
+                    <div className="row2">
+                        <div className="bottomSection">
+                            <input placeholder="Text Field" type="text" value={ingredients} onChange={e => setIngredients(e.target.value)} />
+                            <input placeholder="Text Field" type="text" value={directions} onChange={e => setDirections(e.target.value)} />
+                            <input placeholder="Text Field" type="text" value={author} onChange={e => setAuthor(e.target.value)} />
+                        </div>
+                        <button>Submit</button>
                     </div>
-                    
-                    </form>
-            </div>
-        )
+                </div>
+
+            </form>
+        </div>
+    )
 })
 export default withRouter(ShareRecipe);
