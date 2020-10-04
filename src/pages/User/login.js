@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios'
+import AuthService from '../../services/auth.service';
 import { withRouter } from 'react-router';
 import './login.css';
 
@@ -8,56 +8,20 @@ import './login.css';
 
 const Login = withRouter(({ history }) => {
 
-    const [userName, setUserName] = useState("");
+    const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [registerUsername, setRegisterUserName] = useState("");
-    const [passwordRegister, setPasswordRegister] = useState("");
 
-    const url = "http://localhost:8080";
+    const URL = "http://localhost:8080";
     
-    const handleSubmitRegisterUser = (e) => {
-        e.preventDefault();
-        let registerEmail = document.getElementById("registerEmail").value;
-        let user = {
-            "username": registerUsername,
-            "email": registerEmail,
-            "password": passwordRegister
-        }
-        let headers = {
-            'Content-Type': 'application/json'
-        }
-        user = JSON.stringify(user);
-        console.log(user)
-        axios.post(`${url}/api/user/register`, user, {headers: headers})
-            .then(res => {
-                console.log(res.status)
-                if(res.status === 200){
-                    alert("Registration Successful")
-                }
-            })
-
-    }
 
     const handleSubmitLoginUser = async (e) => {
         e.preventDefault();
-        let user = {
-            "username": userName,
-            "password": password
-        };
-        let headers = {
-            'Content-Type': 'application/json'
-        }
-
-        let response = await axios.post(`${url}/login`, user, {headers: headers});
-        if (response.status === 200) {
-            // Need to store jwt in localstorage
-            localStorage.setItem('logininfo', response.headers.authorization);
-            localStorage.setItem('user', user.username);
-            window.alert("You're logged in!");
-        }
-        else {
-            window.alert("Something went wrong. Try again.");
-        }
+        AuthService.login(username, password)
+            .then(response => {
+                if(response.status === 200){
+                    window.location ="http://localhost:3000/"
+                }
+            })
     };
     return (
         <div className="page-container">
@@ -65,12 +29,11 @@ const Login = withRouter(({ history }) => {
                 <div className="title">Please Login</div>
                 <br />
                 <br />
-
                 <form onSubmit={handleSubmitLoginUser}>
                     <div className="emailInput"><svg className="svg-icon" viewBox="0 0 20 20">
                         <path d="M17.388,4.751H2.613c-0.213,0-0.389,0.175-0.389,0.389v9.72c0,0.216,0.175,0.389,0.389,0.389h14.775c0.214,0,0.389-0.173,0.389-0.389v-9.72C17.776,4.926,17.602,4.751,17.388,4.751 M16.448,5.53L10,11.984L3.552,5.53H16.448zM3.002,6.081l3.921,3.925l-3.921,3.925V6.081z M3.56,14.471l3.914-3.916l2.253,2.253c0.153,0.153,0.395,0.153,0.548,0l2.253-2.253l3.913,3.916H3.56z M16.999,13.931l-3.921-3.925l3.921-3.925V13.931z"></path>
                     </svg>
-                        <input placeholder="Enter UserName" type="text" value={userName} onChange={e => setUserName(e.target.value)} />
+                        <input placeholder="Enter UserName" type="text" value={username} onChange={e => setUserName(e.target.value)} />
                     </div>
                     <br />
                     <div className="passwordInput"><svg className="svg-icon" viewBox="0 0 20 20">
@@ -84,26 +47,6 @@ const Login = withRouter(({ history }) => {
                     <button>Submit</button>
                 </form>
             </div>
-            <div className="sign-up-form">
-                <form onSubmit={handleSubmitRegisterUser}>
-                        <h1>Sign-Up</h1>
-                        <div className="register-user">
-                            <input type="text" placeholder="Enter a Username" value={registerUsername} onChange={e => setRegisterUserName(e.target.value)} />
-                        </div>
-                        <br />
-                        <div className="register-email">
-                            <input type="text" id="registerEmail" placeholder="Enter an Email Address" />
-                        </div>
-                        <br />
-                        <div className="passwordInput2">
-                            <input placeholder="Enter password" type="password" value={passwordRegister} onChange={e => setPasswordRegister(e.target.value)} />
-                            <i className="fa fa-eye" aria-hidden="true"></i>
-                        </div>
-                        <br />
-                        <button>Register</button>
-                </form>
-                
-              </div>
         </div>
     )
 })

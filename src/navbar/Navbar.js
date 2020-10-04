@@ -1,22 +1,75 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import AuthService from '../services/auth.service';
 import './style.css';
 
-const Navbar = () => {
-    return(
-        <div className="navbar">
-            <div className='logo'>CodeChefs</div>
-            <div className="col-1-3">
-                <div className="nav-links">
-                    <div className="link"><Link to="/">Recipes</Link></div>
-                    <div className="link"><Link to="/share-recipe">Share a Recipe</Link></div>
-                    <div className="link"><Link to="/about">About</Link></div>
-                </div>
+class Navbar extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            currentUser: undefined
+        }
+    }
+    componentDidMount() {
+        const user = AuthService.getCurrentUser();
+        if(user) {
+            this.setState({
+                currentUser: user.user,
+            })
+        }
+    }
+    logOutUser() {
+        AuthService.logout();
+        window.location.reload();
+    }
+
+    render(){
+       const {currentUser} = this.state;
+       console.log(currentUser)
+        return(
+            <div>
+                <nav className="navbar navbar-expand navbar-light">
+                    <Link to={"/"} className="navbar-brand logo">
+                        &lt;CodeChefs &#47;&gt;
+                    </Link>
+                    <div className="navbar-nav mr-auto">
+                        <li className="nav-item">
+                            <Link to={"/"} className="nav-link">Recipes</Link>
+                        </li>
+                        {
+                            currentUser && (
+                                <li className="nav-item">
+                                    <Link to={"/share-recipe"} className="nav-link">Share A Recipe</Link>
+                                </li>
+                            )
+                        }
+                    </div>
+                    
+                        {
+                            currentUser === undefined ? (
+                                <div className="navbar-nav ml-auto">
+                                    <li className="nav-item">
+                                        <Link to={"/login"} className="nav-link">Login</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to={"/signup"} className="nav-link">Sign Up</Link>
+                                    </li>
+                                </div>
+                            ) : 
+                            (
+                                <div className="navbar-nav ml-auto">
+                                {/*TODO: Create a Profile Link to Profile Page*/}
+                                <li className="nav-item"><Link className="nav-link nav-user">Hello, {currentUser}!</Link></li>
+                                <li className="nav-item">
+                                        <Link to={"/login"} className="nav-link" onClick={this.logOutUser}>Logout</Link>
+                                    </li>
+                                </div>
+                            )
+                        }
+                </nav>
             </div>
-            <div className="col-3-3"><div className="link login"><Link to="/user">Sign Up / Sign In</Link></div></div>
-            
-        </div>
-    )
+        )
+    }
 }
 
 export default Navbar;
