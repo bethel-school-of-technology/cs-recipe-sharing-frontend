@@ -2,64 +2,64 @@
     height:100vh;
     width:100%;
 }
-.header{
+div.main-body .header{
     display: flex;
     justify-content: center;
     height:15%;
 }
-.title {
+div.main-body .title {
     height:100%;
     display:flex;
     align-items: center;
     font-size:2em;
     margin-right:50px;
 }
-.search-bar {
+div.main-body .search-bar {
     display:flex;
     align-items: center;
     font-size:1.5em;
     margin-left:50px;
     position: relative;
 }
-.search-bar input {
+div.main-body .search-bar input {
     width:180px;
     height:20px;
     border-radius: 25px;
 }
-.search-icon {
+div.main-body .search-icon {
     font-size:16px;
     position: absolute;
     right:10px;
 }
 
-.no-matches {
+div.main-body .no-matches {
     margin: 0 auto;
 }
 
-.recipes-container {
+div.main-body .recipes-container {
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
 }
-.recipe-card {
+div.main-body .recipe-card {
     flex: 0 0 200px;
     margin: 10px;
     _border: 1px solid #ccc;
     box-shadow:  2px 2px 6px 0px rgba(0,0,0,0,0.3);
 }
 
-.recipe-card .recipe-image {
+div.main-body .recipe-card .recipe-image {
     width:400px;
     height:200px;
     _border:1px solid black;
     display:flex;
     justify-content: center;
 }
-.recipe-card .recipe-image img{
+div.main-body .recipe-card .recipe-image img{
     width:auto;
     height:100%;
 }
-.recipe-card .recipe-body {
+div.main-body .recipe-card .recipe-body {
     width:400px;
     height:150px;
     _border:1px solid black;
@@ -67,24 +67,24 @@
     flex-direction: column;
     align-items: center;
 }
-.recipe-body .recipe-title {
+div.main-body .recipe-body .recipe-title {
     font-size:24px;
 }
-.recipe-body .recipe-author {
+div.main-body .recipe-body .recipe-author {
     font-size:18px;
     margin-top:5px;
 }
-.recipe-body .recipe-stats {
+div.main-body .recipe-body .recipe-stats {
     width:100%;
     margin-top:10px;
     display:flex;
     justify-content: center;
 }
-.recipe-body .recipe-stats .cook-time, .difficulty{
+div.main-body .recipe-body .recipe-stats .cook-time, .difficulty{
     margin:0px 20px;
 }
 
-.flex-center {
+div.main-body .flex-center {
     margin: 0 auto;
     width:90%;
 }

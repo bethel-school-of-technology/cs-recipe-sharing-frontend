@@ -5,9 +5,6 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import './assets/images/bacon-squash.jpg';
 
-
-
-
 ReactDOM.render(
   <React.StrictMode>
     <App />
