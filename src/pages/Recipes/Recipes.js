@@ -16,7 +16,7 @@ const SearchBarComponent = ({handleSearch}) => {
 
 const RecipesSharedTitle = ({numberOfRecipes}) => {
     return(
-        <div className="title">Recipes Shared ({numberOfRecipes})</div>
+        <div className="recipe-number">Recipes Shared ({numberOfRecipes})</div>
     )
 }
 
