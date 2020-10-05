@@ -5,8 +5,8 @@ import './App.css';
 import Navbar from './navbar/Navbar';
 import AboutPageView from './pages/About/About';
 import RecipeHomePageView from './pages/Recipes/Recipes';
-import ShareRecipe from './pages/Share-A-Recipe/Share-Recipe';
-import User from './pages/User/login';
+import Login from './pages/User/login';
+import Signup from './pages/User/Signup';
 
 function App() {
   return (
@@ -17,7 +17,8 @@ function App() {
         <Route path="/" component={RecipeHomePageView} exact />
         <Route path="/share-recipe" component={ShareRecipe} />
         <Route path="/about" component={AboutPageView} />
-        <Route path="/user" component={User} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
       </Switch>
     </div>
     </Router>
