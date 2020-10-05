@@ -18,13 +18,17 @@ const Login = withRouter(({ history }) => {
         e.preventDefault();
         AuthService.login(username, password)
             .then(response => {
-                if(response.status === 200){
+                if(response.status !== 200){
+                    // Throw login error
+                    alert("Invalid Username or Password")
+                }
+                else if (response.status === 200) {
                     window.location ="http://localhost:3000/"
                 }
-            })
+        })
     };
     return (
-        <div className="page-container">
+        <div className="login-container">
             <div className="login-form center">
                 <div className="title">Please Login</div>
                 <br />

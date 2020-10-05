@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios'
 import { withRouter } from 'react-router';
 import './share-recipe.css';
-
+import AuthService from '../../services/auth.service';
 
 const ShareRecipe = withRouter(({ history }) => {
+
+    let currentUser = AuthService.getCurrentUser();
+    console.log("User Value: ", currentUser)
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -62,6 +65,12 @@ const ShareRecipe = withRouter(({ history }) => {
             window.alert("Something went wrong. Try again.");
         }
     };
+    if(currentUser === null) {
+        return(
+            <div><h1>Not Authorized!</h1></div>
+        )
+    }
+    else if (currentUser){
     return (
         <div className="page-container">
                 <div className="title">Share Your Favorite Recipe</div>
@@ -102,5 +111,6 @@ const ShareRecipe = withRouter(({ history }) => {
                     </form>
             </div>
         )
+    }
 })
 export default withRouter(ShareRecipe);

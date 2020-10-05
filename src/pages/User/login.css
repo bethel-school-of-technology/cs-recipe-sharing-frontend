@@ -1,7 +1,7 @@
 body{
     height:100vh;
   }
-  .page-container {
+  .login-container {
     display:flex;
     justify-content: center;
     height:800px;

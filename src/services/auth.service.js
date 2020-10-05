@@ -58,8 +58,11 @@ class AuthService {
                         username: user.username,
                         message: "Registration Successful!"
                     }
-                    if(response.status === 200){
-                        return registration_data
+                    if(response.status === 200) {
+                        return true
+                    }
+                    else if(response.status !== 200) {
+                        return false;
                     }
                     
                 })
