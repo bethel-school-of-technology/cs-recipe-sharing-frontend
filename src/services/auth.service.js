@@ -1,3 +1,4 @@
+import { configure } from "@testing-library/react";
 import axios from "axios";
 
 const URL = "http://localhost:8080/";
@@ -5,33 +6,45 @@ const URL = "http://localhost:8080/";
 class AuthService {
 
     // Login Service
-    login(username, password){
-        
+    login(username, password) {
+
         // Create User
         let user = {
-            username: username,
-            password: password
-        }
-        // Stringify User object => Backend only accepts JSON
+                username: username,
+                password: password
+            }
+            // Stringify User object => Backend only accepts JSON
         user = JSON.stringify(user);
-        
+
         // Content Type must be set to "app/json"
         let headers = {
             'Content-Type': 'application/json',
         }
 
-        return axios.post(URL + "login", user, {headers: headers})
-                .then(response => {
-                    if(response.headers.authorization){
-                        user = JSON.parse(user);
+        return axios.post(URL + "login", user, { headers: headers })
+            .then(response => {
+                if (response.headers.authorization) {
+                    user = JSON.parse(user);
+                    let headerdata = {
+                        authorization: response.headers.authorization,
+                        username: user.username
+                    };
+                    axios.get(URL + "api/user", { headers: headerdata }).then(res => {
+                        let userDetails = JSON.parse(res.data);
                         let user_data = {
                             authorization: response.headers.authorization,
-                            user: user.username
+                            username: user.username,
+                            id: userDetails.id,
+                            savedRecipes: userDetails.savedRecipes
                         }
+
                         localStorage.setItem("user", JSON.stringify(user_data))
-                    }
-                    return response;
-                })
+
+                    })
+
+                }
+                return response;
+            })
     }
 
     // Logout Method => Logs user out, removes local storage
@@ -50,19 +63,21 @@ class AuthService {
         let headers = {
             'Content-Type': 'application/json'
         }
-        
-        return axios.post(URL + "api/user/register", user, {headers: headers})
-                .then(response => {
-                    user = JSON.parse(user);
-                    let registration_data = {
-                        username: user.username,
-                        message: "Registration Successful!"
-                    }
-                    if(response.status === 200){
-                        return registration_data
-                    }
-                    
-                })
+
+        return axios.post(URL + "api/user/register", user, { headers: headers })
+            .then(response => {
+                user = JSON.parse(user);
+                let registration_data = {
+                    username: user.username,
+                    message: "Registration Successful!"
+                }
+                if (response.status === 200) {
+                    return true
+                } else if (response.status !== 200) {
+                    return false;
+                }
+
+            })
     }
 
     // Get the user info from Local Storage

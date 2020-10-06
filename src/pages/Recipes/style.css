@@ -7,7 +7,7 @@ div.main-body .header{
     justify-content: center;
     height:15%;
 }
-div.main-body .title {
+div.main-body .recipe-number {
     height:100%;
     display:flex;
     align-items: center;

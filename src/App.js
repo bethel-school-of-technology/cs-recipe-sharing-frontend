@@ -7,6 +7,7 @@ import AboutPageView from './pages/About/About';
 import RecipeHomePageView from './pages/Recipes/Recipes';
 import Login from './pages/User/login';
 import Signup from './pages/User/Signup';
+import ShareRecipe from './pages/Share-A-Recipe/Share-Recipe';
 
 function App() {
   return (

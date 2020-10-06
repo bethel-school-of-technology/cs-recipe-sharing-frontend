@@ -14,6 +14,14 @@ const Signup = () => {
         AuthService.register(registerUsername, registerEmail, registerPassword)
             .then(response => {
                 console.log(response)
+                if(response === false) {
+                    alert ("Could not Register User!");
+                }
+                else if (response){
+                    alert ("User Successfuly Registered!");
+                    window.location = "http://localhost:3000/login"
+                    
+                }
             })
 
     }
