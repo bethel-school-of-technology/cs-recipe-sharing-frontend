@@ -4,11 +4,9 @@ import './App.css';
 
 import Navbar from './navbar/Navbar';
 import AboutPageView from './pages/About/About';
-import login from './pages/Login/login';
 import RecipeHomePageView from './pages/Recipes/Recipes';
-import ShareRecipe from './pages/Share-A-Recipe/Share-Recipe';
-
-
+import Login from './pages/User/login';
+import Signup from './pages/User/Signup';
 
 function App() {
   return (
@@ -16,90 +14,14 @@ function App() {
     <div>
       <Navbar />
       <Switch>
-        {/* <Route path="/" component={RecipeHomePageView} /> */}
-        <Route path="/share-recipe" component={ShareRecipe} />
+        <Route path="/" component={RecipeHomePageView} exact />
         <Route path="/about" component={AboutPageView} />
-        <Route path="/login" component={login}/>
-        {/* <Route path="/Recipes" component={RecipeHomePageView}/> */}
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
       </Switch>
     </div>
     </Router>
   );
 }
 
-export {App};
-
-class Recipes extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Recipes</h1>
-      </div>
-    )
-  } 
-}
-
-export {Recipes};
-
-class ShareRecipe extends Component {
-  render(){
-    return (
-      <div>
-        <h1>Share Recipe</h1>
-      </div>
-    )
-  }
-}
-
-export {ShareRecipe};
-
-class MyRecipes extends Component {
-  render() {
-    return (
-      <div>
-        <h1>My Recipes</h1>
-      </div>
-    )
-  }
-}
-
-export {MyRecipes};
-
-class About extends Component {
-  render() {
-    return (
-      <div>
-        <h1>About</h1>
-      </div>
-    )
-  }
-}
-
-export {About};
-
-class LoginSignUp extends Component {
-  render() {
-    return (
-      <div>
-        <h1>Login / Sign Up</h1>
-      </div>
-    )
-  }
-}
-
-export {LoginSignUp};
-
-ReactDOM.render((
-  <Router history = {browserHistory}>
-    <Route path = "/" component = {App}>
-      <IndexRout component = {Recipes} />
-      <Route path = "recipes" component = {Recipes} />
-      <Route path = "share-recipe" component = {ShareRecipe} />
-      <Route path = "my-recipes" component = {MyRecipes} />
-      <Route path = "about" component = {About} />
-      <Route path = "loginsignup" component = {LoginSignup} />
-     </Route>
-  </Router>
-), document.getElementById('app'))
-
-export default App
+export default App;
