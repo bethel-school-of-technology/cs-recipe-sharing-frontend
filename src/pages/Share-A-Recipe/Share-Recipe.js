@@ -4,10 +4,10 @@ import { withRouter } from 'react-router';
 import './share-recipe.css';
 import AuthService from '../../services/auth.service';
 
-const ShareRecipe = withRouter(({ history }) => {
+let currentUser = AuthService.getCurrentUser();
+console.log("User Value: ", currentUser);
 
-    let currentUser = AuthService.getCurrentUser();
-    console.log("User Value: ", currentUser)
+const ShareRecipe = withRouter(({ history }) => {
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -19,17 +19,36 @@ const ShareRecipe = withRouter(({ history }) => {
         measurement: "spoons"
     }]);
     const [difficulty, setDifficulty] = useState("Medium");
-    const [image, setImage] = useState({
-        name: '',
-        surname: '',
-        cv: ''
-    });
     const [directions, setDirections] = useState("");
     const [author, setAuthor] = useState("");
-    const [authorId, setAuthorId] = useState(2);
-      
-    
+
+    const [selectedFile, setState] = useState([]);
+
     const url = "http://localhost:8080";
+
+    let headers = {
+        authorization: currentUser.authorization
+    }
+
+    const fileChangedHandler = (event) => {
+        setState({selectedFile: event.target.files[0]})
+        console.log(selectedFile);
+        }
+    const uploadHandler = async (e) => {
+        e.preventDefault(); 
+        const formData = new FormData();
+        formData.append('file', selectedFile);
+        console.log(formData, selectedFile);
+        let response = await axios.post(`${url}/api/recipe/image`, formData, {headers: headers});
+        if(response.status === 200){
+            window.alert(response.statusText);
+        }
+        else{
+            window.alert("Something went wrong." + response.statusText);
+        }
+     }
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         /*const formData = new FormData()
@@ -49,12 +68,8 @@ const ShareRecipe = withRouter(({ history }) => {
            ingredients: ingredients,
            image: "../../assets/images/uploads",
            directions: directions,
-           author: author,
-           authorId: authorId
-        }
-        //need to add the token
-        let headers = {
-            authorization: `Bearer ${localStorage.getItem('logininfo')}`
+           author: currentUser.user,
+           authorId: 3
         }
         //need to format the ingredients
         let response = await axios.post(`${url}/api/recipe/add/`, recipe, {headers: headers});
@@ -74,6 +89,13 @@ const ShareRecipe = withRouter(({ history }) => {
     return (
         <div className="page-container">
                 <div className="title">Share Your Favorite Recipe</div>
+
+                <form>
+                     <div>
+                      <input type="file" onChange={fileChangedHandler}/>
+                          <button onClick={uploadHandler}>Upload!</button>
+                    </div>
+                </form>
                 <form onSubmit={handleSubmit}>
                     <div className="recipeFormContainer">
                         <div className="row1">
@@ -94,8 +116,8 @@ const ShareRecipe = withRouter(({ history }) => {
                             </select>                   
                             </div>
                             <div className="fileUpload">
-                                <label>Upload a picture for your recipe!</label>
-                            <input type="file" onChange={e => setImage(e.target.files[0])} />
+                               <label>Upload a picture for your recipe!</label>
+                            <input type="file"/>
                             </div>
                             </div>
                             <div className="row2">
