@@ -18,14 +18,13 @@ const ShareRecipe = withRouter(({ history }) => {
     const [description, setDescription] = useState("");
     const [servingSize, setServing] = useState(8);
     const [cookTime, setCookTime] = useState(30);
-    const [ingredients, setIngredients] = useState([{
+    const [ingredients, setIngredients] = useState({
         name: 'Salt',
         amount: 3,
         measurement: "spoons"
-    }]);
+    });
     const [difficulty, setDifficulty] = useState("Medium");
-    const [directions, setDirections] = useState("");
-    
+    const [directions, setDirections] = useState(""); 
 
     const url = "http://localhost:8080";
 
@@ -36,8 +35,12 @@ const ShareRecipe = withRouter(({ history }) => {
         console.log(selectedFile);
         let formData = new FormData();
         formData.append('imageFile', selectedFile);
-        let response = await axios.post(`${url}/api/recipe/uploadImage`, formData, {headers: headers});
+        let response = await axios.post(`${url}/api/recipe/uploadImage`, formData, {headers: headers}).then(res => {
+            return res;
+        });
         if(response.status === 200){
+            const delay = ms => new Promise(res => setTimeout(res, ms));
+            await delay(3000);
             document.getElementById("imagePreview").src = response.data;
         }
         else{
@@ -52,15 +55,16 @@ const ShareRecipe = withRouter(({ history }) => {
         let recipe = {
            title: title,
            description: description,
-           servingSize: servingSize,
-           cookTime: cookTime,
+           servingSize: parseInt(servingSize),
+           cookTime: parseInt(cookTime),
            difficulty: difficulty,
-           ingredients: ingredients,
+           ingredients: [ingredients],
            image: document.getElementById("imagePreview").src,
            directions: directions,
            author: currentUser.user,
-           authorId: currentUser.id
+           authorId: 2
         }
+        console.log(recipe, ingredients);
         //need to format the ingredients
         let response = await axios.post(`${url}/api/recipe/add/`, recipe, {headers: headers});
         if(response.status === 200){
@@ -82,7 +86,7 @@ const ShareRecipe = withRouter(({ history }) => {
                 <form onSubmit={uploadPicture} >
                     <div className="fileUpload">
                             <label>Upload a picture for your recipe!</label>
-                                    <input type="file"  onChange={e => setFile(e.target.files[0])}  accept="image/x-png,image/gif,image/jpeg,image/jpg"/>
+                                    <input type="file"  onChange={e => setFile(e.target.files[0])}  accept="image/tiff, image/png,image/gif,image/jpeg,image/jpg"/>
                                      <button>Upload</button>
 
                      </div>
@@ -112,8 +116,12 @@ const ShareRecipe = withRouter(({ history }) => {
                             </div>
                             <div className="row2">
                         <div className="bottomSection">
-                        <input placeholder="Text Field" type="text" value={ingredients} onChange={e => setIngredients(e.target.value)} />
-                        <input placeholder="Text Field" type="text" value={directions} onChange={e => setDirections(e.target.value)} />
+                        <input placeholder="Ingredient" type="text" onChange={e => setIngredients({name: e.target.value})} />
+                        <input placeholder="Amount" type="number" onChange={e => setIngredients({amount: parseInt(e.target.value)})} />
+                        <input placeholder="Measurement" type="text" onChange={e => setIngredients({measurement: e.target.value})} />
+                        </div>
+                        <div>
+                        <textarea placeholder="Text Field" type="textarea" value={directions} onChange={e => setDirections(e.target.value)} ></textarea>
                         </div>
                     <button>Submit</button>
                     </div>
