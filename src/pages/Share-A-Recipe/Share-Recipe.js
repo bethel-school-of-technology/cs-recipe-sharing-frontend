@@ -7,7 +7,15 @@ import AuthService from '../../services/auth.service';
 let currentUser = AuthService.getCurrentUser();
 console.log("User Value: ", currentUser);
 
+<<<<<<< HEAD
 const ShareRecipe = withRouter(({ history }) => {
+=======
+    let currentUser = AuthService.getCurrentUser();
+
+    let headers = {
+        authorization: currentUser.authorization
+    }
+>>>>>>> 771acf3824d4affba6986319c39776f56c5f6d08
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -20,6 +28,7 @@ const ShareRecipe = withRouter(({ history }) => {
     }]);
     const [difficulty, setDifficulty] = useState("Medium");
     const [directions, setDirections] = useState("");
+<<<<<<< HEAD
     const [author, setAuthor] = useState("");
 
     const [selectedFile, setState] = useState([]);
@@ -47,18 +56,32 @@ const ShareRecipe = withRouter(({ history }) => {
             window.alert("Something went wrong." + response.statusText);
         }
      }
+=======
+    
+
+    const url = "http://localhost:8080";
+
+    const [selectedFile, setFile] = useState([]);
+
+    const uploadPicture = async (e) => {
+        e.preventDefault();
+        console.log(selectedFile);
+        let formData = new FormData();
+        formData.append('imageFile', selectedFile);
+        let response = await axios.post(`${url}/api/recipe/uploadImage`, formData, {headers: headers});
+        if(response.status === 200){
+            document.getElementById("imagePreview").src = response.data;
+        }
+        else{
+            window.alert("Something went wrong. Try again.");
+            console.log(response);
+        }
+    }
+>>>>>>> 771acf3824d4affba6986319c39776f56c5f6d08
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        /*const formData = new FormData()
-        formData.append(
-                'This is a name',
-                this.image.name,
-                this.image
-                
-        );
-        axios.post('../../assets/images/uploads/', formData);*/
         let recipe = {
            title: title,
            description: description,
@@ -66,10 +89,14 @@ const ShareRecipe = withRouter(({ history }) => {
            cookTime: cookTime,
            difficulty: difficulty,
            ingredients: ingredients,
-           image: "../../assets/images/uploads",
+           image: document.getElementById("imagePreview").src,
            directions: directions,
            author: currentUser.user,
+<<<<<<< HEAD
            authorId: 3
+=======
+           authorId: currentUser.id
+>>>>>>> 771acf3824d4affba6986319c39776f56c5f6d08
         }
         //need to format the ingredients
         let response = await axios.post(`${url}/api/recipe/add/`, recipe, {headers: headers});
@@ -89,6 +116,7 @@ const ShareRecipe = withRouter(({ history }) => {
     return (
         <div className="page-container">
                 <div className="title">Share Your Favorite Recipe</div>
+<<<<<<< HEAD
 
                 <form>
                      <div>
@@ -96,6 +124,16 @@ const ShareRecipe = withRouter(({ history }) => {
                           <button onClick={uploadHandler}>Upload!</button>
                     </div>
                 </form>
+=======
+                <form onSubmit={uploadPicture} >
+                    <div className="fileUpload">
+                            <label>Upload a picture for your recipe!</label>
+                                    <input type="file"  onChange={e => setFile(e.target.files[0])}  accept="image/x-png,image/gif,image/jpeg,image/jpg"/>
+                                     <button>Upload</button>
+
+                     </div>
+                 </form>
+>>>>>>> 771acf3824d4affba6986319c39776f56c5f6d08
                 <form onSubmit={handleSubmit}>
                     <div className="recipeFormContainer">
                         <div className="row1">
@@ -112,19 +150,23 @@ const ShareRecipe = withRouter(({ history }) => {
                             <select placeholder="Difficulty" type="text" value={difficulty} onChange={e => setDifficulty(e.target.value)} >
                                 <option value="Easy">Easy</option>
                                 <option value="Medium">Medium</option>
-                                <option value="Hard">Hard</option>
+                                <option value="Difficult">Difficult</option>
                             </select>                   
                             </div>
+<<<<<<< HEAD
                             <div className="fileUpload">
                                <label>Upload a picture for your recipe!</label>
                             <input type="file"/>
+=======
+                            <div className="displayImage">
+                                <img id="imagePreview" src={require(`../../assets/images/bacon-squash.jpg`)} />
+>>>>>>> 771acf3824d4affba6986319c39776f56c5f6d08
                             </div>
                             </div>
                             <div className="row2">
                         <div className="bottomSection">
                         <input placeholder="Text Field" type="text" value={ingredients} onChange={e => setIngredients(e.target.value)} />
                         <input placeholder="Text Field" type="text" value={directions} onChange={e => setDirections(e.target.value)} />
-                        <input placeholder="Text Field" type="text" value={author} onChange={e => setAuthor(e.target.value)} />
                         </div>
                     <button>Submit</button>
                     </div>

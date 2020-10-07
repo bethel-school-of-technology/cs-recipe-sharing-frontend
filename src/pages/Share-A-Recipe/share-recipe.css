@@ -35,3 +35,7 @@ input, select, option, button {
     padding: 5px;
     margin: 5px auto;
 }
+
+#imagePreview {
+    width: 40%;
+}
