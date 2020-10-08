@@ -24,12 +24,23 @@ div.title {
 .recipeFormLeft {
     padding: 10px;
     border-right: 1px solid black;
+    max-width: 40%;
 }
-.fileUpload {
+.displayImage {
+    padding: 10px;
+    max-width: 40%;
+}
+
+.fileUpload, .fileUpload input {
+    margin: 0px auto;
+    text-align: center;
+}
+
+.fileUpload input {
     padding: 10px;
 }
 
-input, select, option, button {
+input, select, option, button, label, textarea {
     font-size: 1.2em;
     width: 80%;
     padding: 5px;
@@ -38,4 +49,23 @@ input, select, option, button {
 
 #imagePreview {
     width: 40%;
+    
+}
+
+.ingList div {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+.ingList div input, .ingList div label {
+    width: 30%;
+
+}
+textarea {
+    width: 100%;
+}
+.addRemove {
+    max-width: 270px;
+    margin: 5px;
+
 }
