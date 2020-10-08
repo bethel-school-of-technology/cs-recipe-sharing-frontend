@@ -5,8 +5,10 @@ div.title {
 }
 
 .page-container {
-    display: inline-block!important;
+    display: flex;
     margin: 5px;
+    padding: 20px;
+    justify-content: center;
 }
 
 .row1 {
@@ -24,11 +26,10 @@ div.title {
 .recipeFormLeft {
     padding: 10px;
     border-right: 1px solid black;
-    max-width: 40%;
+    width: 70%;
 }
 .displayImage {
     padding: 10px;
-    max-width: 40%;
 }
 
 .fileUpload, .fileUpload input {
@@ -47,15 +48,29 @@ input, select, option, button, label, textarea {
     margin: 5px auto;
 }
 
+.sideBy {
+    display: flex;
+}
+.sideBy input, .sideBy select {
+    width: 40%;
+}
+
+.sideBy select {
+    min-height: 2.2em;
+}
+
 #imagePreview {
     width: 40%;
-    
+    max-width: 300px;
 }
 
 .ingList div {
     display: flex;
     justify-content: center;
     flex-direction: row;
+    width: 100%;
+    max-width: 600px;
+    margin: 0px auto;
 }
 .ingList div input, .ingList div label {
     width: 30%;
@@ -63,9 +78,20 @@ input, select, option, button, label, textarea {
 }
 textarea {
     width: 100%;
+    min-height: 100px;
 }
 .addRemove {
     max-width: 270px;
     margin: 5px;
+
+}
+
+.ql-editor{
+     min-height:200px; 
+    }
+
+#shareRecipeButton {
+    width: 100%;
+    margin: 20px auto;
 
 }
