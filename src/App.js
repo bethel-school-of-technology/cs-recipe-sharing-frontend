@@ -8,6 +8,7 @@ import RecipeHomePageView from './pages/Recipes/Recipes';
 import Login from './pages/User/login';
 import Signup from './pages/User/Signup';
 import ShareRecipe from './pages/Share-A-Recipe/Share-Recipe';
+import profilePage from './pages/User/profilePage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/about" component={AboutPageView} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/profile" component={profilePage} />
       </Switch>
     </div>
     </Router>

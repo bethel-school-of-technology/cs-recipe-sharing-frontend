@@ -1,29 +1,34 @@
+import React, { useState } from 'react';
 import Axios from 'axios';
-import React, { Component } from 'react';
-import { Router } from 'react-router-dom';
-import axios from 'axios';
+import { withRouter } from 'react-router';
+import AuthService from '../../services/auth.service';
+import FontAwesome from 'react-fontawesome';
+import authService from '../../services/auth.service';
 import { render } from '@testing-library/react';
 
+       const profilePage = () => { 
+        let currentUser = AuthService.getCurrentUser();
+        
 
-useEffect(() => {
-            const loggedInUser = localStorage.getItem("user");
-            if (loggedInUser) {
-                const foundUser = JSON.parse(loggedInUser);
-                setUser(foundUser);
-            }
+        console.log(currentUser);
 
 
-            const handleLogout = () => {
-                setUserName({});
-                setPassword("");
-                localStorage.clear();
+
+           const SearchBarComponent = ({handleSearch}) => {
+                return(
+                    <div className="search-bar">
+                        Search for Recipe: &nbsp;<input onChange={handleSearch} type="text" />
+                        < div className="search-icon" name="search" />
+                    </div>
+                )
             };
+                 return(
+                    <div>
+                <button onClick = { authService.logout } > Logout </button>
+                
+                    
+                </div>
+                 );
+                }
 
-
-
-
-            render() { <
-                button onClick = { handleLogout } > Logout < /button>
-
-            }
-            export default (profilePage);
+            export default withRouter(profilePage);
