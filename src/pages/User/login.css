@@ -1,0 +1,62 @@
+body{
+    height:100vh;
+  }
+  .page-container {
+    display:flex;
+    justify-content: center;
+    height:800px;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .login-form {
+      width:auto;
+      height: 400px;
+      padding: 40px;
+      border-radius:20px;
+      background: linear-gradient(225deg, #ddd7d7, #ffffff);
+      box-shadow:  25px 5px 15px #cfc9c9, 
+               5px -5px 15px #ffffff;
+      margin-bottom: 50px;
+      margin: 0px 40px;
+        
+  }
+  .emailInput svg {
+    height: 22px;
+    margin: 15px 0px -06px -25px;
+  }
+  
+  .passwordInput svg {
+    height: 22px;
+    margin: 15px 0px -06px -25px
+  }
+  
+  .login-form div.title {
+    font-family: Impact, sans-serif;
+    color:black;
+    text-shadow: 3px -6px 11px rgba(0, 0, 0, 0.44);
+    font-size: xx-large;
+  
+  }
+  .container {
+    display:flex;
+    justify-content: center;
+  }
+  .sign-up-form {
+    display:flex;
+    justify-content: center;
+    width:300px!important;
+    _font-family: Impact, sans-serif;
+    color:black;
+    padding: 40px;
+    _text-shadow: 3px -6px 11px rgba(0, 0, 0, 0.44);
+    font-size: large;
+    width:auto;
+    height: 400px;
+    _border-radius: 20px;
+    background: linear-gradient(225deg, #ddd7d7, #ffffff);
+    box-shadow:  2px 2px 2px #cfc9c9,
+      5px -5px 15px #ffffff;
+      margin: 0px 40px;
+  }
+  
