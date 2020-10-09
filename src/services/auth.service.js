@@ -32,8 +32,27 @@ class AuthService {
                     }
                     return response;
                 })
-    }
+    };
 
+    saveDetails(){
+        let user = this.getCurrentUser();
+        let headers = {
+            authorization: user.authorization,
+            username: user.user
+        }
+        return axios.get(URL + "api/user/", { headers: headers }).then(res => {
+               console.log(res);
+               let userDetails = {
+                   authorization:  user.authorization,
+                   user: user.user,
+                   email: res.data.email,
+                   id: res.data.id,
+                   savedRecipes: res.data.savedRecipes
+               }
+               localStorage.setItem("user", JSON.stringify(userDetails));
+               return res;
+           });
+       };
     // Logout Method => Logs user out, removes local storage
     logout() {
         localStorage.removeItem("user");
