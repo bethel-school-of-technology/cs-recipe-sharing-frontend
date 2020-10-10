@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
 import { withRouter } from 'react-router';
-import AuthService from '../../services/auth.service';
 import FontAwesome from 'react-fontawesome';
 import authService from '../../services/auth.service';
-import { render } from '@testing-library/react';
+import Card from 'react-bootstrap/Card';
+import Recipe from '../Recipes/Recipes';
+
 
        const profilePage = () => { 
-        let currentUser = AuthService.getCurrentUser();
+        let currentUser = authService.getCurrentUser();
         
 
         console.log(currentUser);
@@ -24,10 +25,19 @@ import { render } from '@testing-library/react';
             };
                  return(
                     <div>
+                    <Card.Header>Header</Card.Header>
+                    <Card.Body>
+                        <Card.Title>{Recipe.currentUser}</Card.Title>
+                        <Card.Text>
+                            Here is an example of your Recipe.
+                        </Card.Text>
+                    </Card.Body> 
+                   
                 <button onClick = { authService.logout } > Logout </button>
+                </div>
                 
                     
-                </div>
+                
                  );
                 }
 

@@ -59,7 +59,8 @@ class Navbar extends React.Component {
                             (
                                 <div className="navbar-nav ml-auto">
                                 {/*TODO: Create a Profile Link to Profile Page*/}
-                                <li className="nav-item"><Link to={"/profile"} className="nav-link nav-user">Hello, {currentUser}!</Link></li>
+                                <li className="nav-item">
+                                      <Link to={"/profile"} className="nav-link nav-user">Hello, {currentUser}!</Link>My Profile</li>
                                 <li className="nav-item">
                                         <Link to={"/login"} className="nav-link" onClick={this.logOutUser}>Logout</Link>
                                     </li>
