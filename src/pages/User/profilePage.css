@@ -39,25 +39,4 @@
     color: #FF6B35;
 }
 
-.my-recipes.pop-view {
-    position: relative;
-    left: 100px;
-    top: -210px;
-    color: #F54100;
-    font-weight: bold;
-    font-size: 2rem;
-    -webkit-filter: blur(0px);
-    display:none;
-}
-.show {
-    display:block;
-    animation-name: example;
-    animation-duration: 2s;
-    transition: ease-in;
-}
-
-@keyframes example {
-    0%   {opacity: 0%;}
-    100% {opacity: 100%;}
-}
   

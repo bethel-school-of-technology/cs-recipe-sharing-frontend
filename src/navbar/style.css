@@ -4,6 +4,13 @@
 .nav-link {
     font-size:1.5rem;
 }
-.nav-user {
+.nav-item {
+    margin:0px 15px;
+}
 
+nav a{
+    color:black!important;
+}
+nav a:hover{
+    color:#E05F15!important;
 }

@@ -20,14 +20,14 @@ class profilePage extends React.Component {
         super();
         this.state = {
             isLoading: true,
-            currentUser: {},
+            currentUser: null,
             savedRecipes: null,
             userPostedRecipes: null
         }
     }
 
     deleteRecipe(id) {
-        const URL = ' localhost:8080/api/recipe/'
+        const URL = 'http://localhost:8080/api/recipe/delete/'
         const currentUser = AuthService.getCurrentUser();
         const TOKEN = currentUser.authorization;
         if(window.confirm("Delete this post?")){
@@ -38,9 +38,14 @@ class profilePage extends React.Component {
                     Authorization: TOKEN
                 }
             }).then(response => {
-                    console.log(response)
+                    // Delete request is OK!
+                    if(response.status === 200){
+                        document.getElementById(`posted-recipe-${id}`).remove();
+                    }
+                    
                 }
             )
+            
         }
         else {
             return;
@@ -94,83 +99,91 @@ class profilePage extends React.Component {
     }
 
     render(){
-        if(this.state.isLoading){
-            return(
-                <IsLoading />
-            )
-        }
-        else if(this.state.isLoading === false) {
-            return(
-                <div className="container my-recipes">
-                    <h2>My Saved Recipes: </h2>
-                    <hr></hr>
-                    <div className="row">
+        if (this.state.currentUser === null) {
+            return (
+              <div className="container">
+                <h1>Not Authorized to view this page!</h1>
+              </div>
+            );
+          } else if (this.state.currentUser) {
+            if(this.state.isLoading){
+                return(
+                    <IsLoading />
+                )
+            }
+            else if(this.state.isLoading === false) {
+                return(
+                    <div className="container my-recipes">
+                        <h2>My Saved Recipes: </h2>
+                        <hr></hr>
+                        <div className="row">
+                            {
+                                this.state.savedRecipes === null ? 
+                                (
+                                    <h2>No Saved Recipes!</h2>
+                                ) 
+                                : 
+                                (
+                                    this.state.savedRecipes.map((recipe, index) => {
+                                        let description = recipe.description;
+    
+                                        if(description.length > 55){
+                                            description = description.substring(0, 55) + '<br /><span class="readmore">Read More ...</span>';
+                                        }
+    
+                                        return (
+                                            <Link to={{
+                                                        pathname: `/recipe/${recipe.id}`,
+                                                        state: {recipe}
+                                                    }}>
+                                                <Card className="mx-4 my-4 col card-hover" style={{ width: "18rem", padding: "0px" }}>
+                                                    <Card.Img variant="top" src={recipe.image} />
+                                                    <Card.Body>
+                                                        <Card.Title>{recipe.title}</Card.Title>
+                                                        <Card.Text>
+                                                            <div dangerouslySetInnerHTML={{
+                                                                __html: description
+                                                            }}></div>
+                                                        </Card.Text>
+                                                    </Card.Body> 
+                                                </Card>
+                                            </Link>
+                                        ) 
+                                    })
+                                )
+                            }
+                        </div>
+                        <h2>My Shared Recipes: </h2>
+                        <hr></hr>
                         {
-                            this.state.savedRecipes === null ? 
-                            (
-                                <h2>No Saved Recipes!</h2>
-                            ) 
-                            : 
-                            (
-                                this.state.savedRecipes.map((recipe, index) => {
-                                    let description = recipe.description;
-
-                                    if(description.length > 55){
-                                        description = description.substring(0, 55) + '<br /><span class="readmore">Read More ...</span>';
-                                    }
-
-                                    return (
-                                        <Link to={{
-                                                    pathname: `/recipe/${recipe.id}`,
-                                                    state: {recipe}
-                                                }}>
-                                            <Card className="mx-4 my-4 col card-hover" style={{ width: "18rem", padding: "0px" }}>
-                                                <Card.Img variant="top" src={recipe.image} />
-                                                <Card.Body>
-                                                    <Card.Title>{recipe.title}</Card.Title>
-                                                    <Card.Text>
-                                                        <div dangerouslySetInnerHTML={{
-                                                            __html: description
-                                                        }}></div>
-                                                    </Card.Text>
-                                                </Card.Body> 
-                                            </Card>
-                                            <div id={`pop-${index}`} className="pop-view">View Recipe</div>
-                                        </Link>
-                                    ) 
-                                })
-                            )
+                            this.state.userPostedRecipes.map(recipe => {
+                                return (
+                                    <Card id={`posted-recipe-${recipe.id}`} className="mx-4 my-4 col post-card" style={{ width: "18rem", padding: "0px" }}>
+                                        <Card.Img variant="top" src={recipe.image} />
+                                        <div className="user-options">
+                                            <button>Edit</button> <br />
+                                            <button onClick={() => this.deleteRecipe(recipe.id)}>Delete</button>
+                                        </div>
+                                        <Card.Body>
+                                            <Card.Title>{recipe.title}</Card.Title>
+                                            <Card.Text>
+                                                <div dangerouslySetInnerHTML={{
+                                                    __html: recipe.description
+                                                }}></div>
+                                            </Card.Text>
+                                            
+                                        </Card.Body>
+                                    </Card>
+                                   
+                                )
+                            })
                         }
+                        
                     </div>
-                    <h2>Recipes I've Shared: </h2>
-                    <hr></hr>
-                    {
-                        this.state.userPostedRecipes.map(recipe => {
-                            return (
-                                <Card id={`posted-recipe-${recipe.id}`} className="mx-4 my-4 col post-card" style={{ width: "18rem", padding: "0px" }}>
-                                    <Card.Img variant="top" src={recipe.image} />
-                                    <div className="user-options">
-                                        <button>Edit</button> <br />
-                                        <button onClick={() => this.deleteRecipe(recipe.id)}>Delete</button>
-                                    </div>
-                                    <Card.Body>
-                                        <Card.Title>{recipe.title}</Card.Title>
-                                        <Card.Text>
-                                            <div dangerouslySetInnerHTML={{
-                                                __html: recipe.description
-                                            }}></div>
-                                        </Card.Text>
-                                        
-                                    </Card.Body>
-                                </Card>
-                               
-                            )
-                        })
-                    }
-                    
-                </div>
-            )
-        }
+                )
+            }
+          }
+        
         
     }
     
