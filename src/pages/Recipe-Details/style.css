@@ -1,0 +1,31 @@
+.image {
+    padding-top: 15px;
+    padding-right: 50px;
+  }
+  
+  .recipe-name {
+    padding-left: -15px;
+    padding-top: 15px;
+    padding-bottom: 60px;
+  }
+  
+  .serv-level-time {
+    padding-top: 20px;
+  }
+  
+  .recipe-info {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+  }
+  
+  .ingredients {
+    padding-top: 50px;
+  }
+  
+  ul{
+    list-style-type: none;
+  }
+  
+  .method {
+    padding-top: 50px;
+  }

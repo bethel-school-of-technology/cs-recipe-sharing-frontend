@@ -2,13 +2,15 @@ import React from 'react';
 import  './style.css';
 import FA from 'react-fontawesome';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { Card, Button } from 'react-bootstrap';
 
 
 const SearchBarComponent = ({handleSearch}) => {
     return(
         <div className="search-bar">
             
-            Search for Recipe: &nbsp;<input onChange={handleSearch} type="text" />
+            Search for Recipe: &nbsp;<input onChange={handleSearch} type="text" style={{fontSize: "14px"}} />
             <FA className="search-icon" name="search" />
         </div>
     )
@@ -21,21 +23,23 @@ const RecipesSharedTitle = ({numberOfRecipes}) => {
 }
 
 const Recipe = ({recipe}) => {
+    let recipeId = recipe.id;
     return(
-        <div className="recipe-card">
-            <div className="recipe-image">
-                <img src={require(`../../assets/images/bacon-squash.jpg`)} />
-                {/**<img alt="recipe" src={require(`../../${recipe.image}`)} /> */}
-            </div>
-            <div className="recipe-body">
-                <div className="recipe-title">{recipe.title}</div>
-                <div className="recipe-author">By: {recipe.author}</div>
-                <div className="recipe-stats">
-                    <div className="cook-time">Cook Time: {recipe.cookTime}</div>
-                    <div className="difficulty">Difficulty: {recipe.difficulty}</div>
-                </div>
-            </div>
-        </div>
+        <Link to={{
+            pathname: `/recipe/${recipe.id}`,
+            state: {recipe}
+        }}>
+            <Card className="mx-4 my-4 col card-hover" style={{ width: "18rem", padding: "0px" }}>
+                <Card.Img variant="top" src={recipe.image} height="160px" />
+                <Card.Body>
+                    <Card.Title style={{textAlign:"center"}}>{recipe.title}</Card.Title>
+                    <Card.Text className="">
+                        <div className="cook-time">Cook Time: {recipe.cookTime}min</div>
+                        <div className="serving-size">Serving Size: {recipe.servingSize}</div>
+                    </Card.Text>
+                </Card.Body> 
+            </Card>
+        </Link>
     )
 }
 

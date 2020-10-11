@@ -1,0 +1,46 @@
+.signup {
+    width:380px;
+    padding:20px
+}
+
+.signup .user-icon {
+    position: absolute;
+    top:10px;
+    right:10px;
+}
+.signup .email-icon {
+    position: absolute;
+    top:10px;
+    right:10px;
+}
+.signup .pass-icon {
+    position: absolute;
+    top:10px;
+    right:10px;
+}
+.signup .pass-eye {
+    position: absolute;
+    top:12px;
+    right:35px;
+}
+.signup .pass-eye:hover{
+    cursor: pointer;
+}
+
+.signup .pass-eye-confirm {
+    position: absolute;
+    top:12px;
+    right:35px;
+}
+.signup .pass-eye-confirm {
+    cursor: pointer;
+}
+.signup .inputbox {
+    position: relative;
+    margin:20px 0px;
+}
+
+.signup button {
+    background-color: #ED7D3A!important;
+    border:1px solid #ED7D3A!important;
+  }

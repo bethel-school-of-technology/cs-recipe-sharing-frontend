@@ -8,6 +8,8 @@ import RecipeHomePageView from './pages/Recipes/Recipes';
 import Login from './pages/User/login';
 import Signup from './pages/User/Signup';
 import ShareRecipe from './pages/Share-A-Recipe/Share-Recipe';
+import ViewRecipeDetails from './pages/Recipe-Details/Recipe';
+import profilePage from './pages/User/profilePage';
 
 function App() {
   return (
@@ -16,7 +18,9 @@ function App() {
       <Navbar />
       <Switch>
         <Route path="/" component={RecipeHomePageView} exact />
+        <Route path="/recipe/:id" component={ViewRecipeDetails} />
         <Route path="/share-recipe" component={ShareRecipe} />
+        <Route path="/my-recipes" component={profilePage} />
         <Route path="/about" component={AboutPageView} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
