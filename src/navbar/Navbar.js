@@ -25,7 +25,6 @@ class Navbar extends React.Component {
 
     render(){
        const {currentUser} = this.state;
-       console.log(currentUser)
         return(
             <div>
                 <nav className="navbar navbar-expand navbar-light">
@@ -36,13 +35,16 @@ class Navbar extends React.Component {
                         <li className="nav-item">
                             <Link to={"/"} className="nav-link">Recipes</Link>
                         </li>
-                        {
-                            currentUser && (
+                            {currentUser && (
                                 <li className="nav-item">
                                     <Link to={"/share-recipe"} className="nav-link">Share A Recipe</Link>
-                                </li>
-                            )
-                        }
+                                </li>    
+                            )}
+                            {currentUser && (
+                                <li className="nav-item">
+                                    <Link to={"/my-recipes"} className="nav-link">My Recipes</Link>
+                                </li>    
+                            )}
                     </div>
                     
                         {
@@ -59,7 +61,7 @@ class Navbar extends React.Component {
                             (
                                 <div className="navbar-nav ml-auto">
                                 {/*TODO: Create a Profile Link to Profile Page*/}
-                                <li className="nav-item"><Link className="nav-link nav-user">Hello, {currentUser}!</Link></li>
+                                <li className="nav-item"><Link to={"/my-recipes"} className="nav-link nav-user">Hello, {currentUser}!</Link></li>
                                 <li className="nav-item">
                                         <Link to={"/login"} className="nav-link" onClick={this.logOutUser}>Logout</Link>
                                     </li>

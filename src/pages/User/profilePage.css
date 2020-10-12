@@ -1,0 +1,42 @@
+.my-recipes .readmore {
+    color: #F54100;
+}
+
+.my-recipes a {
+    text-decoration: none;
+    color: #FF6B35;
+}
+.my-recipes a:hover {
+    color: #F54100;
+}
+.my-recipes .card-hover:hover {
+    scale: 1.1;
+    _-webkit-filter: blur(2px);
+    transition: .5s ease-in-out;
+}
+
+.my-recipes .post-card .user-options {
+    display:none;
+}
+.my-recipes .post-card:hover .user-options {
+    position: absolute;
+    top:10px;
+    right: 5px;
+    display:block;
+    transition: 1s ease-in;
+}
+.my-recipes .user-options button {
+    width: 50px;
+    font-size:14px;
+    background-color: #E7EBC5;
+    border: 1px solid #E7EBC5;
+    border-radius: 5px;
+    color: #29335C;
+} 
+.my-recipes .user-options button:hover {
+    background-color: #DAE0A4;
+    border: 1px solid #DAE0A4;
+    color: #FF6B35;
+}
+
+  

@@ -33,7 +33,24 @@ class AuthService {
                     return response;
                 })
     }
-
+    saveDetails(){
+        let user = this.getCurrentUser();
+        let headers = {
+            authorization: user.authorization,
+            username: user.user
+        }
+        return axios.get(URL + "api/user/", { headers: headers }).then(res => {
+               let userDetails = {
+                   authorization:  user.authorization,
+                   user: user.user,
+                   email: res.data.email,
+                   id: res.data.id,
+                   savedRecipes: res.data.savedRecipes
+               }
+               localStorage.setItem("user", JSON.stringify(userDetails));
+               return res;
+           });
+       }
     // Logout Method => Logs user out, removes local storage
     logout() {
         localStorage.removeItem("user");
@@ -54,12 +71,11 @@ class AuthService {
         return axios.post(URL + "api/user/register", user, {headers: headers})
                 .then(response => {
                     user = JSON.parse(user);
-                    let registration_data = {
-                        username: user.username,
-                        message: "Registration Successful!"
+                    if(response.status === 200) {
+                        return true
                     }
-                    if(response.status === 200){
-                        return registration_data
+                    else if(response.status !== 200) {
+                        return false;
                     }
                     
                 })
@@ -68,6 +84,19 @@ class AuthService {
     // Get the user info from Local Storage
     getCurrentUser() {
         return JSON.parse(localStorage.getItem('user'));
+    }
+
+    getSavedRecipes() {
+        let user = this.getCurrentUser();
+        let headers = {
+            authorization: user.authorization,
+            username: user.user
+        }
+        return axios.get(URL + "api/user/", { headers: headers })
+            .then(response => {
+                return response.data.savedRecipes
+            })
+        
     }
 }
 
