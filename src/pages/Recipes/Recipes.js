@@ -37,7 +37,7 @@ const RecipesSharedTitle = ({numberOfRecipes}) => {
 const Recipe = ({recipe, savedRecipes, currentUser}) => {
     return(
         
-            <Card className="mx-4 my-4 card-hover" style={{ width: "18rem", padding: "0px" }}>
+            <Card className="mx-2 my-4 card-hover" style={{ width: "18rem", padding: "0px" }}>
                 <Link to={{
                         pathname: `/recipe/${recipe.id}`,
                         state: {recipe}

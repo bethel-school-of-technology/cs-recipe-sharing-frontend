@@ -15,10 +15,10 @@ class ViewRecipeDetails extends React.Component {
     }
     componentDidMount(){
         const { recipe } = this.props.location.state;
-        const user = AuthService.getCurrentUser();
+        AuthService.saveDetails()
+        let user = JSON.parse(localStorage.getItem('user'));
 
         // TODO: only show save a recipe if user is logged in
-        console.log(user)
         this.setState({
             user: user,
             recipe: recipe,
@@ -36,60 +36,76 @@ class ViewRecipeDetails extends React.Component {
             recipeId: this.state.recipe.id,
         }
         
-        axios.put(URL, {},{ headers: headers}).
-            then(response => {
-                console.log(response)
-            })
+        axios({
+            url: 'http://localhost:8080/api/user/my-recipe',
+            method: "PUT",
+            headers:headers
+        }).then(response => {
+            if(response.status === 200){
+                alert("Saved Recipe!")
+            }
+            else {
+                alert("Recipe could not be saved - error!")
+            }
+        })
     }
 
     render(){
         return(
             <div>
-                <div className="container">
+                <div className="container recipe-details">
                     <div className="row">
-                        <div className="col-5">
-                            <div className="image"><img src={this.state.recipe.image} height="300px" width="300px" /></div>    
-                        </div>
-                        <div className="col-7">
-                            <div className="recipe-name">
-                                <h2>{this.state.recipe.title}</h2>
-                            </div>     
-                            <div className="recipe-info">
-                                <p>{this.state.recipe.description}</p>
+                        <div className="col-md-5">
+                            <div className="page-header">
+                                <h1>{this.state.recipe.title}</h1>
+                                <hr />
                             </div>
-                            <div className="serv-level-time">
-                                <h6>Serving Size: {this.state.recipe.servingSize} | Cooking Time: {this.state.recipe.cookTime} | Difficulty: {this.state.recipe.difficulty}</h6>
+                            
+                            <div className="recipe-description">
+                                {this.state.recipe.description}
+                            </div>
+                            <hr />
+                            <div className="recipe-stats">
+                                <h3>Serving Size: <span className="badge badge-primary">{this.state.recipe.servingSize}</span></h3>
+                                <h3>Cook Time: <span className="badge badge-primary">{this.state.recipe.cookTime} min</span></h3>
+                                <h3 >Difficulty:<span className="badge badge-primary">{this.state.recipe.difficulty}</span></h3>
+                            
+                            
                             </div>
                         </div>
-                    </div>  
-                    <div className="row">
-                        <div className="col-4">
+                        <div className="col-md-3">
+                            <div className="image">
+                                <img className="rounded" src={this.state.recipe.image} />
+                                {this.state.user && (
+                                <button className="save-recipe" onClick={() => this.saveRecipe()}>Save Recipe</button>
+                            )}
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div className="row my-5">
+                        <div className="col-md-4">
                             <div className="ingredients">
-                                <h5>Ingredients:</h5>
-                                <ul>
-                                    {
+                                <h3>Ingredients:</h3>
+                                <ul className="list-group list-group-flush">
+                                {
                                         this.state.ingredients.map(item => {
-                                            return <li key={item.name}>ingredient: {item.name} amount: {item.amount} {item.measurement}</li>
+                                            return <li className="list-group-item" key={item.name}>{item.name} amount: {item.amount} {item.measurement}</li>
                                         })
-                                    }
+                                }
                                 </ul>
                             </div>
                         </div>
-                        <div className="col-8">    
-                            <div className="method">
-                                <h5>Method:</h5>
-                                <div
-                                    dangerouslySetInnerHTML={{
-                                        __html: this.state.recipe.directions
-                                    }}></div>
-                            </div>
+                        <div className="col-md-1"></div>
+                        <div className="col-md-6">
+                            <h3>Method:</h3>    
+                            <div
+                            dangerouslySetInnerHTML={{
+                                __html: this.state.recipe.directions
+                            }}></div>
                         </div>    
                     </div>
                 </div>
-                <br />
-                {this.state.user && (
-                    <button onClick={() => this.saveRecipe()}>Save Recipe</button>
-                )}
             </div>
         )
     }
