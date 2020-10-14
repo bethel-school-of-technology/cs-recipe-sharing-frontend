@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Card, Button } from 'react-bootstrap';
-import FontAwesome from 'react-fontawesome';
 import AuthService from '../../services/auth.service';
 import axios from 'axios';
 import './profilePage.css';
@@ -14,7 +13,6 @@ const IsLoading = () => {
         </div>
     )
 }
-
 class profilePage extends React.Component {
     constructor(){
         super();
@@ -55,8 +53,8 @@ class profilePage extends React.Component {
 
 
     async componentDidMount(){
+        if(AuthService.getCurrentUser()){
         AuthService.saveDetails();
-        const currentUser = JSON.parse(localStorage.getItem('user'));
         // Get Saved Recipe Id's
         const savedRecipes = await AuthService.getSavedRecipes();
         
@@ -77,23 +75,20 @@ class profilePage extends React.Component {
                 }
             })
         })
-
-        // Get the User ID
-        const userID = currentUser.id
         // Find All Recipes that match the Author ID
         let userPostedRecipes = [];
         userPostedRecipes = RECIPES.filter(recipe => {
-            if(recipe.authorId === userID){
+            if(recipe.authorId === JSON.parse(localStorage.getItem("user")).id){
                 return recipe
             }
         })
-
         this.setState({
             isLoading: false,
             currentUser: JSON.parse(localStorage.getItem('user')),
             savedRecipes: myRecipes,
             userPostedRecipes: userPostedRecipes
         })
+    }
     }
     componentDidUpdate(){
     }

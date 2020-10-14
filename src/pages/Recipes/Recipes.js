@@ -126,13 +126,15 @@ class RecipeHomePageView extends React.Component {
 
     componentDidUpdate() {
         let savedRecipesArray = this.state.savedRecipes;
-        
+
         if(this.state.isLoading === false && savedRecipesArray !== null){
             savedRecipesArray.map(recipeID => {
                 let heart = document.getElementById(`js-save-${recipeID}`);
-                heart.classList.remove('far');
+                if(heart) {
+                heart.classList.remove('far');  
                 heart.classList.add('fas');
                 heart.style.color = "#f52626";
+                }
 
             })
         }
