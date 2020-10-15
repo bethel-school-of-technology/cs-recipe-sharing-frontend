@@ -35,9 +35,10 @@ class ViewRecipeDetails extends React.Component {
             userId: this.state.user.id,
             recipeId: this.state.recipe.id,
         }
+        console.log(headers)
         
         axios({
-            url: 'http://localhost:8080/api/user/my-recipe',
+            url: URL,
             method: "PUT",
             headers:headers
         }).then(response => {
