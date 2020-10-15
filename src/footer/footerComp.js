@@ -20,7 +20,9 @@ const Footer = () => {
           </div>
           <div className="col-md-4 d-flex justify-content-center">
             <div class="footer-pad">
-             <img src="favicon.ico" ></img>
+             <img src="ChefLogo.png" alt=""></img>
+             <br/>
+             <br/>
             </div>
           </div>
           <div className="col-md-4 d-flex justify-content-end">
