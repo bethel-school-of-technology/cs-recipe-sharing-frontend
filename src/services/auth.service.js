@@ -32,7 +32,8 @@ class AuthService {
                     }
                     return response;
                 })
-    }
+    };
+
     saveDetails(){
         let user = this.getCurrentUser();
         let headers = {
@@ -40,6 +41,7 @@ class AuthService {
             username: user.user
         }
         return axios.get(URL + "api/user/", { headers: headers }).then(res => {
+               console.log(res);
                let userDetails = {
                    authorization:  user.authorization,
                    user: user.user,
@@ -50,7 +52,7 @@ class AuthService {
                localStorage.setItem("user", JSON.stringify(userDetails));
                return res;
            });
-       }
+       };
     // Logout Method => Logs user out, removes local storage
     logout() {
         localStorage.removeItem("user");
