@@ -15,12 +15,15 @@ class ViewRecipeDetails extends React.Component {
     }
     componentDidMount(){
         const { recipe } = this.props.location.state;
+        if(AuthService.getCurrentUser()){
         AuthService.saveDetails()
         let user = JSON.parse(localStorage.getItem('user'));
-
+         this.setState({
+             user: user
+         })
+        }
         // TODO: only show save a recipe if user is logged in
         this.setState({
-            user: user,
             recipe: recipe,
             ingredients: recipe.ingredients
         })
@@ -29,6 +32,7 @@ class ViewRecipeDetails extends React.Component {
     }
 
     saveRecipe() {
+        if(AuthService.getCurrentUser()){
         const URL = "http://localhost:8080/api/user/my-recipe";
         const headers = {
             Authorization: this.state.user.authorization,
@@ -48,6 +52,10 @@ class ViewRecipeDetails extends React.Component {
                 alert("Recipe could not be saved - error!")
             }
         })
+        }
+        else {
+            alert("You must be logged in to save a recipe!");
+        }
     }
 
     render(){

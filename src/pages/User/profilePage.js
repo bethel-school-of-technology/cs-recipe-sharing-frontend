@@ -68,20 +68,18 @@ class profilePage extends React.Component {
             })
         // Filter the Recipes and get the Saved Saved Recipes
         let myRecipes = [];
-        savedRecipes.map(id => {
-            RECIPES.filter(recipe => {
-                if(recipe.id === id){
-                    myRecipes.push(recipe)
-                }
-            })
-        })
         // Find All Recipes that match the Author ID
         let userPostedRecipes = [];
-        userPostedRecipes = RECIPES.filter(recipe => {
-            if(recipe.authorId === JSON.parse(localStorage.getItem("user")).id){
-                return recipe
+        for(var i = 0; i < RECIPES.length; i++) {
+            if(RECIPES[i].authorId === JSON.parse(localStorage.getItem("user")).id){
+                userPostedRecipes.push(RECIPES[i]);
             }
-        })
+            if (savedRecipes) {
+                if(savedRecipes.includes(RECIPES[i].id)){
+                    myRecipes.push(RECIPES[i]);
+                }
+            }
+        }
         this.setState({
             isLoading: false,
             currentUser: JSON.parse(localStorage.getItem('user')),

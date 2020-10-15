@@ -10,12 +10,13 @@ let currentUser = AuthService.getCurrentUser();
 
 const ShareRecipe = withRouter(({ history }) => {
 
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [servingSize, setServing] = useState();
   const [cookTime, setCookTime] = useState();
   const [ingredients, setIngredients] = useState([
-    { name: "", amount: 0, measurement: "" },
+    { name: "", amount: 0, measurement: "Select" },
   ]);
   const [difficulty, setDifficulty] = useState("Medium");
   const [directions, setDirections] = useState("");
@@ -59,6 +60,23 @@ const ShareRecipe = withRouter(({ history }) => {
   const handleAddClick = () => {
     setIngredients([...ingredients, { name: "", amount: 0, measurement: "" }]);
   };
+
+  if(history.location.pathname.includes("edit")){
+
+    let editId = history.location.pathname.replace("/edit/", "");
+     
+    axios.get(url + "/api/recipe/" + editId).then( res => {
+      if(res.status === 200) {
+      console.log(res.data);
+      }
+      else {
+        alert("Can't find your recipe!");
+        history.goBack();
+      }
+    })
+    console.log(editId);
+  }
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -203,13 +221,23 @@ const ShareRecipe = withRouter(({ history }) => {
                             value={x.amount}
                             onChange={(e) => handleInputChange(e, i)}
                           />
-                          <input
-                            placeholder="Measurement"
+                          <select 
+                          placeholder="Measurement"
                             type="text"
                             name="measurement"
                             value={x.measurment}
                             onChange={(e) => handleInputChange(e, i)}
-                          />
+                            >
+                            <option value="Select">Select</option>
+                          <option value="Teaspoon(s)">Teaspoon(s)</option>
+                          <option value="Tablespoon(s)">Tablespoons(s)</option>
+                          <option value="Ounce(s)">Ounce(s)</option>
+                          <option value="Cup(s)">Cup(s)</option>
+                          <option value="Pint(s)">Pint(s)</option>
+                          <option value="Quart(s)">Quart(s)</option>
+                          <option value="Gallon(s)">Gallon(s)</option>
+                        
+                       </select>
                         </div>
                         <div className="addRemoveButtons">
                           {ingredients.length - 1 === i && (
