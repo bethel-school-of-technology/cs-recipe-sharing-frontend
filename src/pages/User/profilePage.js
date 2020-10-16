@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import AuthService from '../../services/auth.service';
 import axios from 'axios';
 import './profilePage.css';
@@ -51,6 +51,11 @@ class profilePage extends React.Component {
         
     }
 
+    editRecipe(id) {
+        if (id) {
+            window.location.replace("/edit/" + id);
+        }
+    }
 
     async componentDidMount(){
         if(AuthService.getCurrentUser()){
@@ -121,7 +126,7 @@ class profilePage extends React.Component {
                                         let description = recipe.description;
     
                                         if(description.length > 55){
-                                            description = description.substring(0, 55) + '<br /><span class="readmore">Read More ...</span>';
+                                            description = description.substring(0, 55) + '<br /><span className="readmore">Read More ...</span>';
                                         }
     
                                         return (
@@ -154,7 +159,7 @@ class profilePage extends React.Component {
                                     <Card id={`posted-recipe-${recipe.id}`} className="mx-4 my-4 col post-card" style={{ width: "18rem", padding: "0px" }}>
                                         <Card.Img variant="top" src={recipe.image} />
                                         <div className="user-options">
-                                            <button>Edit</button> <br />
+                                            <button onClick={() => this.editRecipe(recipe.id)}>Edit</button> <br />
                                             <button onClick={() => this.deleteRecipe(recipe.id)}>Delete</button>
                                         </div>
                                         <Card.Body>

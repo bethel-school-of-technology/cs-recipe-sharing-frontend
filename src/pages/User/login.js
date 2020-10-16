@@ -43,12 +43,12 @@ const Login = withRouter(({ history }) => {
         <div className="container d-flex justify-content-center">
             <form onSubmit={handleSubmitLoginUser}>
                     <div className="card login">
-                        <div className="text-center intro"> <i class="fa fa-user-astronaut fa-10x"></i></div>
+                        <div className="text-center intro"> <i className="fa fa-user-astronaut fa-10x"></i></div>
                         <div className="mt-4 text-center">
-                            <div className="mt-3 inputbox"> <input className='form-control' placeholder="Username" type="text" value={username} onChange={e => setUserName(e.target.value)} />  <i class="fa fa-user user-icon"></i> </div>
-                            <div className="inputbox">  <input className='form-control pass' placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)} /><i onClick={showPassword} className="fas fa-eye pass-eye"></i><i class="fa fa-lock pass-icon"></i> </div>
+                            <div className="mt-3 inputbox"> <input className='form-control' placeholder="Username" type="text" value={username} onChange={e => setUserName(e.target.value)} />  <i className="fa fa-user user-icon"></i> </div>
+                            <div className="inputbox">  <input className='form-control pass' placeholder="Password" type="password" value={password} onChange={e => setPassword(e.target.value)} /><i onClick={showPassword} className="fas fa-eye pass-eye"></i><i className="fa fa-lock pass-icon"></i> </div>
                         </div>
-                        <div className="mt-2"> <button className="btn btn-primary btn-block">LOGIN <i class="fas fa-sign-in-alt"></i></button> </div>
+                        <div className="mt-2"> <button className="btn btn-primary btn-block">LOGIN <i className="fas fa-sign-in-alt"></i></button> </div>
                     </div>
             </form>
         </div>

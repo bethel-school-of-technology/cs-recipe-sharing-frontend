@@ -3,6 +3,7 @@ import './style.css';
 import axios from 'axios';
 import AuthService from '../../services/auth.service';
 
+let currentUser = AuthService.getCurrentUser();
 
 class ViewRecipeDetails extends React.Component {
     constructor(){
@@ -41,12 +42,25 @@ class ViewRecipeDetails extends React.Component {
         }
         
         axios({
-            url: 'http://localhost:8080/api/user/my-recipe',
+            url: URL,
             method: "PUT",
             headers:headers
         }).then(response => {
             if(response.status === 200){
-                alert("Saved Recipe!")
+                alert("Done!")
+                AuthService.saveDetails();
+                let buttonText = document.getElementById("saveButtonText").innerHTML;
+                if(buttonText.includes("Unsave")) {
+                    document.getElementById("originalText").style.display = "none";
+                    document.getElementById("newText").innerHTML = "Save Recipe";
+                    document.getElementById("saveButtonText").style.backgroundColor = "#cc1e1e";
+                    
+                }
+                else {
+                    document.getElementById("originalText").style.display = "none";
+                    document.getElementById("newText").innerHTML = "Unsave Recipe"
+                    document.getElementById("saveButtonText").style.backgroundColor = "#007bff";
+                }
             }
             else {
                 alert("Recipe could not be saved - error!")
@@ -83,9 +97,9 @@ class ViewRecipeDetails extends React.Component {
                         </div>
                         <div className="col-md-3">
                             <div className="image">
-                                <img className="rounded" src={this.state.recipe.image} />
+                                <img className="rounded" alt="food" src={this.state.recipe.image} />
                                 {this.state.user && (
-                                <button className="save-recipe" onClick={() => this.saveRecipe()}>Save Recipe</button>
+                                <button id="saveButtonText" className="save-recipe" onClick={() => this.saveRecipe()}><span id="originalText">{currentUser.savedRecipes.includes(this.state.recipe.id) ? "Unsave Recipe" : "Save Recipe"}</span><span id="newText"></span></button>
                             )}
                             </div>
                             
