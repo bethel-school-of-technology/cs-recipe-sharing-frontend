@@ -23,7 +23,7 @@ const SearchBarComponent = ({handleSearch}) => {
     return(
         <div className="search-bar">
             <span className="search-text">Find a Recipe:</span> &nbsp;<input className="form-control search" onChange={handleSearch} type="text" style={{fontSize: "14px"}} />
-            <i class="fas fa-search search-icon"></i>
+            <i className="fas fa-search search-icon"></i>
         </div>
     )
 }
@@ -48,11 +48,11 @@ const Recipe = ({recipe, savedRecipes, currentUser}) => {
                         state: {recipe}
                 }}><Card.Title style={{textAlign:"center"}}>{recipe.title}</Card.Title>
                     <Card.Text className="">
-                        <div className="cook-time">Cook Time: {recipe.cookTime}min</div>
-                        <div className="serving-size">Serving Size: {recipe.servingSize}</div>
+                        <span className="cook-time">Cook Time: {recipe.cookTime}min</span>
+                        <span className="serving-size">Serving Size: {recipe.servingSize}</span>
                     </Card.Text></Link>
                 {currentUser && (<div className={`save-recipe`}>
-                    <i id={`js-save-${recipe.id}`} className={`far fa-heart`}></i>
+                    <button className="saveHearts" onClick={() => saveRecipe(recipe.id)}><i id={`js-save-${recipe.id}`} className={`far fa-heart`}></i></button>
                 </div>
                 )}
                 </Card.Body> 
@@ -76,6 +76,48 @@ const ViewRecipeCardsComponent = ({recipes, savedRecipes, currentUser}) => {
         )
     }
 }
+
+const saveRecipe = (recipeId) => {
+    if(AuthService.getCurrentUser()){
+    const currentUser = AuthService.getCurrentUser();
+    const URL = "http://localhost:8080/api/user/my-recipe";
+    const headers = {
+        Authorization: currentUser.authorization,
+        userId: currentUser.id,
+        recipeId: recipeId
+    }
+    
+    axios({
+        url: URL,
+        method: "PUT",
+        headers:headers
+    }).then(response => {
+        if(response.status === 200){
+           console.log("Saved Recipe!")
+           let heart = document.getElementById(`js-save-${recipeId}`);
+           if(heart) {
+            heart.classList.toggle('far');  
+            heart.classList.toggle('fas');
+               if(heart.classList.contains("far")) {
+                heart.style.color = "#000000";
+               }
+               else {
+                heart.style.color = "#f52626";
+               }          
+               AuthService.saveDetails();
+             }
+        }
+        else {
+            console.log("Recipe could not be saved - error!")
+        }
+    })
+    }
+    else {
+        console.log("You must be logged in to save a recipe!");
+    }
+};
+
+let ranOnce = false;
 
 class RecipeHomePageView extends React.Component {
     constructor(props){
@@ -116,14 +158,15 @@ class RecipeHomePageView extends React.Component {
 
     componentDidUpdate() {
         let savedRecipesArray = this.state.savedRecipes;
-        
+
         if(this.state.isLoading === false && savedRecipesArray !== null){
-            savedRecipesArray.map(recipeID => {
+            savedRecipesArray.forEach(recipeID => {
                 let heart = document.getElementById(`js-save-${recipeID}`);
-                heart.classList.remove('far');
+                if(heart) {
+                heart.classList.remove('far');  
                 heart.classList.add('fas');
                 heart.style.color = "#f52626";
-
+                }
             })
         }
     }
@@ -156,7 +199,10 @@ class RecipeHomePageView extends React.Component {
             newRecipes = recipes_data.filter(recipe => {
                 let recipe_title = recipe.title.toLowerCase();
                 if(recipe_title.includes(`${searchInput}`)){
-                    return recipe
+                    return recipe;
+                }
+                else {
+                    return false;
                 }
             })
             this.setState({
@@ -165,23 +211,19 @@ class RecipeHomePageView extends React.Component {
         }
     }
 
-    saveRecipe(id){
-        console.log("Save!")
-    }
-
     render(){
         let howManyRecipes = this.state.recipes.length;
         return(
             
             <div className="container-fluid main-body">
-                <div class="jumbotron">
-                    <SearchBarComponent handleSearch={this.handleSearch.bind(this)} />
-                    <h1 class="display-4 ml15"><span className="word">Welcome to</span> <span className="word">CodeChefs</span> <RecipesSharedTitle numberOfRecipes={howManyRecipes} /></h1>
-                    <p class="lead">We built this application so that you could be inspired to share and create new recipes for awesome dishes!</p>
-                    <hr class="my-4" />
+                <div className="jumbotron">
+               
+                    <h1 className="display-4 ml15"><span className="word">Welcome to</span> <span className="word">CodeChefs</span> <RecipesSharedTitle numberOfRecipes={howManyRecipes} /></h1>
+                    <p className="lead">We built this application so that you could be inspired to share and create new recipes for awesome dishes!</p>
+                    <hr className="my-4" />
                     <p>Don't forget to check out who we are, the Code Chefs behind the vision!</p>
-                    <p class="lead">
-                        <a class="btn btn-primary btn-lg" href="#" role="button">About CodeChefs</a>
+                    <p className="lead">
+                        <a className="btn btn-primary btn-lg" href="/about" role="button">About CodeChefs</a>
                     </p>
                 </div>
                     {
@@ -189,6 +231,7 @@ class RecipeHomePageView extends React.Component {
                         
                         (
                             <div className="flex-center">
+      <SearchBarComponent handleSearch={this.handleSearch.bind(this)} />
                                 <div className="recipes-container">
                                     <ViewRecipeCardsComponent currentUser={this.state.currentUser} savedRecipes={this.state.savedRecipes} recipes={this.state.filtered_recipes} />
                                 </div>

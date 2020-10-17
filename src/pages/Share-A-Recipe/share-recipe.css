@@ -55,8 +55,12 @@ input, select, option, button, label, textarea {
     width: 40%;
 }
 
-.sideBy select {
-    min-height: 2.2em;
+select {
+        width: 130px;
+        height: 40px;
+        border: 1px solid black;
+        font-size: 1.2em;
+        background-color: #fff; 
 }
 
 #imagePreview {
@@ -90,8 +94,14 @@ textarea {
      min-height:200px; 
     }
 
-#shareRecipeButton {
+#shareRecipeButton, #deleteRecipeButton {
     width: 100%;
     margin: 20px auto;
+    font-weight: 800;
 
+}
+
+#deleteRecipeButton{
+   background-color: red;
+   color: white;
 }

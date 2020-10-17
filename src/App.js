@@ -24,6 +24,7 @@ function App() {
         <Route path="/about" component={AboutPageView} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/edit/:id" component={ShareRecipe} />
       </Switch>
     </div>
     </Router>

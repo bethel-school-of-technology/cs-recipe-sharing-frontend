@@ -10,6 +10,8 @@ class Navbar extends React.Component {
             currentUser: undefined
         }
     }
+   
+
     componentDidMount() {
         const user = AuthService.getCurrentUser();
         if(user) {
@@ -20,7 +22,7 @@ class Navbar extends React.Component {
     }
     logOutUser() {
         AuthService.logout();
-        window.location.reload();
+        window.location.replace("/");
     }
 
     render(){
@@ -63,7 +65,7 @@ class Navbar extends React.Component {
                                 {/*TODO: Create a Profile Link to Profile Page*/}
                                 <li className="nav-item"><Link to={"/my-recipes"} className="nav-link nav-user">Hello, {currentUser}!</Link></li>
                                 <li className="nav-item">
-                                        <Link to={"/login"} className="nav-link" onClick={this.logOutUser}>Logout</Link>
+                                        <Link to={"/"} className="nav-link" onClick={this.logOutUser}>Logout</Link>
                                     </li>
                                 </div>
                             )
