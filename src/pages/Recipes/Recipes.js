@@ -111,17 +111,7 @@ class RecipeHomePageView extends React.Component {
             isLoading: false,
             currentUser: currentUser,
         })
-    }
-    animateText(){
-        anime.timeline({loop: false})
-            .add({
-                targets: '.ml15 .word',
-                scale: [14,1],
-                opacity: [0,1],
-                easing: "easeOutCirc",
-                duration: 800,
-                delay: (el, i) => 800 * i
-            });
+        this.animateText();
     }
 
     componentDidUpdate() {
@@ -136,7 +126,20 @@ class RecipeHomePageView extends React.Component {
 
             })
         }
-        this.animateText();
+    }
+    /**
+     * This method animates the "Welcome to CodeChefs" text in the Hero
+     */
+    animateText(){
+        anime.timeline({loop: false})
+            .add({
+                targets: '.ml15 .word',
+                scale: [14,1],
+                opacity: [0,1],
+                easing: "easeOutCirc",
+                duration: 800,
+                delay: (el, i) => 800 * i
+        });
     }
 
     handleSearch(e){
