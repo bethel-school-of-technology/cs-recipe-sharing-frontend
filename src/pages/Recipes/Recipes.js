@@ -180,7 +180,7 @@ class RecipeHomePageView extends React.Component {
                     <hr class="my-4" />
                     <p>Don't forget to check out who we are, the Code Chefs behind the vision!</p>
                     <p class="lead">
-                        <a class="btn btn-primary btn-lg" href="#" role="button">About CodeChefs</a>
+                        <a class="btn btn-primary btn-lg" href="/about" role="button">About CodeChefs</a>
                     </p>
                 </div>
                     {

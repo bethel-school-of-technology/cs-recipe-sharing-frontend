@@ -35,6 +35,7 @@ class ViewRecipeDetails extends React.Component {
             userId: this.state.user.id,
             recipeId: this.state.recipe.id,
         }
+        
         console.log(headers)
         
         axios({
@@ -49,7 +50,27 @@ class ViewRecipeDetails extends React.Component {
                 alert("Recipe could not be saved - error!")
             }
         })
+        unsaveRecipe() {
+            const URL = "http://localhost:8080/api/user/my-recipe";
+            const headers = {
+                Authorization: this.state.user.authorization,
+                userId: this.state.user.id,
+                recipeId: this.state.recipe.id,
+            }
+            axios({
+                url: URL,
+                method: "DELETE"
+                headers: headers
+            }).then(response => {
+                if(response.status === 200){
+                    alert("unsaved Recipe")
+                }
+                else{
+                    alert("Recipe was not removed")
+                }
+            })
     }
+
 
     render(){
         return(

@@ -35,6 +35,9 @@ class Navbar extends React.Component {
                         <li className="nav-item">
                             <Link to={"/"} className="nav-link">Recipes</Link>
                         </li>
+                        <li className="nav-item">
+                                        <Link to={"/about"} className="nav-link">About Us.</Link>
+                                    </li>
                             {currentUser && (
                                 <li className="nav-item">
                                     <Link to={"/share-recipe"} className="nav-link">Share A Recipe</Link>
@@ -55,6 +58,9 @@ class Navbar extends React.Component {
                                     </li>
                                     <li className="nav-item">
                                         <Link to={"/signup"} className="nav-link">Sign Up</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link to={"/about"} className="nav-link">About</Link>
                                     </li>
                                 </div>
                             ) : 
