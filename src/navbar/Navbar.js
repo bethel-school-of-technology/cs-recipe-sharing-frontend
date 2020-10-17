@@ -36,7 +36,7 @@ class Navbar extends React.Component {
                             <Link to={"/"} className="nav-link">Recipes</Link>
                         </li>
                         <li className="nav-item">
-                                        <Link to={"/about"} className="nav-link">About Us.</Link>
+                                        <Link to={"/about"} className="nav-link">About Us</Link>
                                     </li>
                             {currentUser && (
                                 <li className="nav-item">

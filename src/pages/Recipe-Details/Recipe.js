@@ -35,7 +35,6 @@ class ViewRecipeDetails extends React.Component {
             userId: this.state.user.id,
             recipeId: this.state.recipe.id,
         }
-        
         console.log(headers)
         
         axios({
@@ -50,27 +49,7 @@ class ViewRecipeDetails extends React.Component {
                 alert("Recipe could not be saved - error!")
             }
         })
-        unsaveRecipe() {
-            const URL = "http://localhost:8080/api/user/my-recipe";
-            const headers = {
-                Authorization: this.state.user.authorization,
-                userId: this.state.user.id,
-                recipeId: this.state.recipe.id,
-            }
-            axios({
-                url: URL,
-                method: "DELETE"
-                headers: headers
-            }).then(response => {
-                if(response.status === 200){
-                    alert("unsaved Recipe")
-                }
-                else{
-                    alert("Recipe was not removed")
-                }
-            })
     }
-
 
     render(){
         return(
@@ -97,7 +76,7 @@ class ViewRecipeDetails extends React.Component {
                         </div>
                         <div className="col-md-3">
                             <div className="image">
-                                <img className="rounded" src={this.state.recipe.image} />
+                                <img className="rounded" alt="" src={this.state.recipe.image} />
                                 {this.state.user && (
                                 <button className="save-recipe" onClick={() => this.saveRecipe()}>Save Recipe</button>
                             )}
