@@ -40,6 +40,7 @@ class ViewRecipeDetails extends React.Component {
             userId: this.state.user.id,
             recipeId: this.state.recipe.id,
         }
+        console.log(headers)
         
         axios({
             url: URL,
