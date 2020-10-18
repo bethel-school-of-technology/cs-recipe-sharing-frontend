@@ -1,8 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
-import { Card, Button } from 'react-bootstrap';
-import FontAwesome from 'react-fontawesome';
+import { Card } from 'react-bootstrap';
 import AuthService from '../../services/auth.service';
 import axios from 'axios';
 import './profilePage.css';
@@ -14,7 +13,6 @@ const IsLoading = () => {
         </div>
     )
 }
-
 class profilePage extends React.Component {
     constructor(){
         super();
@@ -53,10 +51,15 @@ class profilePage extends React.Component {
         
     }
 
+    editRecipe(id) {
+        if (id) {
+            window.location.replace("/edit/" + id);
+        }
+    }
 
     async componentDidMount(){
+        if(AuthService.getCurrentUser()){
         AuthService.saveDetails();
-        const currentUser = JSON.parse(localStorage.getItem('user'));
         // Get Saved Recipe Id's
         const savedRecipes = await AuthService.getSavedRecipes();
         
@@ -70,30 +73,25 @@ class profilePage extends React.Component {
             })
         // Filter the Recipes and get the Saved Saved Recipes
         let myRecipes = [];
-        savedRecipes.map(id => {
-            RECIPES.filter(recipe => {
-                if(recipe.id === id){
-                    myRecipes.push(recipe)
-                }
-            })
-        })
-
-        // Get the User ID
-        const userID = currentUser.id
         // Find All Recipes that match the Author ID
         let userPostedRecipes = [];
-        userPostedRecipes = RECIPES.filter(recipe => {
-            if(recipe.authorId === userID){
-                return recipe
+        for(var i = 0; i < RECIPES.length; i++) {
+            if(RECIPES[i].authorId === JSON.parse(localStorage.getItem("user")).id){
+                userPostedRecipes.push(RECIPES[i]);
             }
-        })
-
+            if (savedRecipes) {
+                if(savedRecipes.includes(RECIPES[i].id)){
+                    myRecipes.push(RECIPES[i]);
+                }
+            }
+        }
         this.setState({
             isLoading: false,
             currentUser: JSON.parse(localStorage.getItem('user')),
             savedRecipes: myRecipes,
             userPostedRecipes: userPostedRecipes
         })
+    }
     }
     componentDidUpdate(){
     }
@@ -128,7 +126,7 @@ class profilePage extends React.Component {
                                         let description = recipe.description;
     
                                         if(description.length > 55){
-                                            description = description.substring(0, 55) + '<br /><span class="readmore">Read More ...</span>';
+                                            description = description.substring(0, 55) + '<br /><span className="readmore">Read More ...</span>';
                                         }
     
                                         return (
@@ -161,7 +159,7 @@ class profilePage extends React.Component {
                                     <Card id={`posted-recipe-${recipe.id}`} className="mx-4 my-4 col post-card" style={{ width: "18rem", padding: "0px" }}>
                                         <Card.Img variant="top" src={recipe.image} />
                                         <div className="user-options">
-                                            <button>Edit</button> <br />
+                                            <button onClick={() => this.editRecipe(recipe.id)}>Edit</button> <br />
                                             <button onClick={() => this.deleteRecipe(recipe.id)}>Delete</button>
                                         </div>
                                         <Card.Body>

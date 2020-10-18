@@ -60,7 +60,7 @@ const Signup = () => {
         <div className="container d-flex justify-content-center">
             <form onSubmit={handleSubmitRegisterUser}>
                 <div className="card signup">
-                    <div className="text-center intro"> <i class="fas fa-user-circle fa-10x"></i></div>
+                    <div className="text-center intro"> <i className="fas fa-user-circle fa-10x"></i></div>
                     <div className="mt-4 text-center">
                         <div className="mt-3 inputbox"> <input className='form-control' type="text" placeholder="Username" value={registerUsername} onChange={e => setRegisterUserName(e.target.value)} />  <i className="fa fa-user user-icon"></i> </div>
                         <div className="inputbox">  <input className='form-control' type="text" id="registerEmail" placeholder="Email Address" onChange={e => setRegisterEmail(e.target.value)} /> <i className="fas fa-envelope email-icon"></i> </div>

@@ -1,7 +1,7 @@
 
 
 .main-body {
-    height:100vh;
+    height:100%;
     width:100%;
 }
 
@@ -15,26 +15,24 @@ div.main-body a:hover {
 }
 
 div.main-body .search-bar {
-    display:flex;
-    _align-items: center;
     font-size:1.5em;
-    margin-left:50px;
-    position: absolute;
-    top:140px;
-    right:40px;
+    margin-left:0px auto;
+    position: relative;
+    text-align: center;
 }
 div.main-body .search-bar input {
-    width:280px;
+    width:50%;
     height:30px;
+    display: inline;
+  
 }
 div.main-body .search-icon {
     font-size:16px;
-    position: absolute;
-    right:10px;
-    top:12px;
+    position: relative;
+    padding: 0px 15px;
 }
 div.main-body .search-bar span.search-text {
-    color: white;
+    color: black;
 }
 
 div.main-body .save-recipe {
@@ -148,10 +146,10 @@ div.main-body p {
     justify-content: space-between;
 }
 
-/**ANIMATIONS**/
-.ml15 {
-    
+button.saveHearts {
+    display: contents;
 }
+/**ANIMATIONS**/
   
 .ml15 .word {
     display: inline-block;

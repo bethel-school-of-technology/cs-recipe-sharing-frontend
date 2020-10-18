@@ -10,6 +10,7 @@ import Signup from './pages/User/Signup';
 import ShareRecipe from './pages/Share-A-Recipe/Share-Recipe';
 import ViewRecipeDetails from './pages/Recipe-Details/Recipe';
 import profilePage from './pages/User/profilePage';
+import Footer from './footer/footerComp';
 
 function App() {
   return (
@@ -24,7 +25,9 @@ function App() {
         <Route path="/about" component={AboutPageView} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/edit/:id" component={ShareRecipe} />
       </Switch>
+      <Footer />
     </div>
     </Router>
   );
