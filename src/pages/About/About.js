@@ -15,9 +15,10 @@ const AboutPageView = () => {
 	</div>
     <br/>
 	<div class="row">
-		<div class="col-md-4">
-            <div class="blake">
-			<img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle"/>
+		
+        <div class="col-md-4">
+            <div className="blake">
+			<img alt="h" src="ethan.jpg" class="rounded-circle" />
             </div>
         </div>
 		<div class="col-sm-4">
