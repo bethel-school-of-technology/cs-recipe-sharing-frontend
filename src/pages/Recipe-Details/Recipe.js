@@ -3,8 +3,6 @@ import './style.css';
 import axios from 'axios';
 import AuthService from '../../services/auth.service';
 
-let currentUser = AuthService.getCurrentUser();
-
 class ViewRecipeDetails extends React.Component {
     constructor(){
         super();
@@ -12,6 +10,7 @@ class ViewRecipeDetails extends React.Component {
             user: null,
             recipe: {},
             ingredients: [],
+            saveButton: false
         }
     }
     componentDidMount(){
@@ -22,6 +21,11 @@ class ViewRecipeDetails extends React.Component {
          this.setState({
              user: user
          })
+        if (user.savedRecipes.includes(recipe.id)){
+            this.setState({
+                saveButton: true
+            });
+        }
         }
         // TODO: only show save a recipe if user is logged in
         this.setState({
@@ -48,20 +52,10 @@ class ViewRecipeDetails extends React.Component {
             headers:headers
         }).then(response => {
             if(response.status === 200){
-                alert("Done!")
                 AuthService.saveDetails();
-                let buttonText = document.getElementById("saveButtonText").innerHTML;
-                if(buttonText.includes("Unsave")) {
-                    document.getElementById("originalText").style.display = "none";
-                    document.getElementById("newText").innerHTML = "Save Recipe";
-                    document.getElementById("saveButtonText").style.backgroundColor = "#cc1e1e";
-                    
-                }
-                else {
-                    document.getElementById("originalText").style.display = "none";
-                    document.getElementById("newText").innerHTML = "Unsave Recipe"
-                    document.getElementById("saveButtonText").style.backgroundColor = "#007bff";
-                }
+                this.setState({
+                    saveButton: !this.state.saveButton
+                });
             }
             else {
                 alert("Recipe could not be saved - error!")
@@ -72,6 +66,8 @@ class ViewRecipeDetails extends React.Component {
             alert("You must be logged in to save a recipe!");
         }
     }
+    
+   
 
     render(){
         return(
@@ -100,7 +96,7 @@ class ViewRecipeDetails extends React.Component {
                             <div className="image">
                                 <img className="rounded" alt="food" src={this.state.recipe.image} />
                                 {this.state.user && (
-                                <button id="saveButtonText" className="save-recipe" onClick={() => this.saveRecipe()}><span id="originalText">{currentUser.savedRecipes.includes(this.state.recipe.id) ? "Unsave Recipe" : "Save Recipe"}</span><span id="newText"></span></button>
+                                <button id="saveButtonText" className="save-recipe" onClick={() => this.saveRecipe()}><span id="originalText">{this.state.saveButton ? "Unsave Recipe" : "Save Recipe"}</span></button>
                             )}
                             </div>
                             

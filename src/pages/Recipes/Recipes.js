@@ -117,8 +117,6 @@ const saveRecipe = (recipeId) => {
     }
 };
 
-let ranOnce = false;
-
 class RecipeHomePageView extends React.Component {
     constructor(props){
         super();

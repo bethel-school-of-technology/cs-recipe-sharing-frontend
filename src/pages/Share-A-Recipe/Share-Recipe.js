@@ -13,8 +13,8 @@ const ShareRecipe = withRouter(({ history }) => {
   const [recipeId, setID] = useState(0);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [servingSize, setServing] = useState();
-  const [cookTime, setCookTime] = useState();
+  const [servingSize, setServing] = useState(0);
+  const [cookTime, setCookTime] = useState(0);
   const [ingredients, setIngredients] = useState([
     { name: "", amount: 0, measurement: "Select" },
   ]);
@@ -173,9 +173,9 @@ const ShareRecipe = withRouter(({ history }) => {
         }).then(response => {
                 // Delete request is OK!
                 if(response.status === 200){
-                    history.push("/");
+                     window.location.replace("/");
                 }
-                
+         
             }
         )
         
