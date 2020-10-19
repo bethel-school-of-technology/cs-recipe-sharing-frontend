@@ -20,7 +20,9 @@ const Footer = () => {
           </div>
           <div className="col-md-4 d-flex justify-content-center">
             <div class="footer-pad">
-             <img src="favicon.ico" ></img>
+             <img src="ChefLogo.png" alt=""></img>
+             <br/>
+             <br/>
             </div>
           </div>
           <div className="col-md-4 d-flex justify-content-end">
@@ -29,6 +31,7 @@ const Footer = () => {
               <ul class="social-network social-circle">
                 <li><a href="https://www.facebook.com/bethelschooloftechnology/" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
                 <li><a href="https://www.linkedin.com/company/bethel-school-of-technology/" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+              
               </ul>
             </div>
           </div>
