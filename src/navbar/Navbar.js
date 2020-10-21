@@ -47,6 +47,9 @@ class Navbar extends React.Component {
                                     <Link to={"/my-recipes"} className="nav-link">My Recipes</Link>
                                 </li>    
                             )}
+                        <li className="nav-item">
+                            <Link to={"/about"} className="nav-link">About Us</Link>
+                        </li>
                     </div>
                     
                         {
@@ -62,7 +65,6 @@ class Navbar extends React.Component {
                             ) : 
                             (
                                 <div className="navbar-nav ml-auto">
-                                {/*TODO: Create a Profile Link to Profile Page*/}
                                 <li className="nav-item"><Link to={"/my-recipes"} className="nav-link nav-user">Hello, {currentUser}!</Link></li>
                                 <li className="nav-item">
                                         <Link to={"/"} className="nav-link" onClick={this.logOutUser}>Logout</Link>
