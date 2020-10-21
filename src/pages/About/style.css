@@ -1,0 +1,58 @@
+.about .p-text {
+    font-size:1.1rem!important;
+}
+.about .stack-icon{
+    display:inline-block;
+    vertical-align: initial;
+    height:90px;
+}
+.about .hide {
+    visibility: hidden;
+}
+.about .show {
+    visibility: visible;
+}
+
+video {
+    object-fit: cover;
+    top: 0;
+    left: 0;
+    position: relative;
+    opacity: 0.5;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: 400px;
+    z-index: 3;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+.video-container {
+    width:100%;
+    height:500px;;
+    position: absolute;
+    z-index:2;
+    background-color: black;
+    opacity: 0.5;
+}
+.blake{
+    position: relative;
+    left: 130px;
+}
+.rob{
+    position: relative;
+    left: 130px;
+    
+}
+.pat{
+    position: relative;
+    left:130px;
+}
+.ethan{
+    position: relative;
+    left:130px;
+}
