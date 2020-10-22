@@ -49,7 +49,7 @@ const AboutContent = ({animateProfileName}) => {
                     <img src="images/team-photos/ethan.jpg" alt="Ethan" class="rounded-circle image-props" />
                     </div>
                 </div>
-                <div class="col-md-5">
+                <div className="col-md-5">
                     <h2>
                         Ethan Mcneil
                     </h2>
@@ -60,24 +60,24 @@ const AboutContent = ({animateProfileName}) => {
                     he works on programming remotely while living in Indiana with his wife and two kids.
                     </p>
                     <p>
-                    <ul class="social-network social-circle">
-                        <li><a href="https://www.linkedin.com/in/ethan-mcneil/" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="https://github.com/ethanmcneil" class="icoGitHub" title="git-hub"><i class="fa fa-github"></i></a></li>
+                    <ul className="social-network social-circle">
+                        <li><a href="https://www.linkedin.com/in/ethan-mcneil/" className="icoLinkedin" title="Linkedin"><i className="fa fa-linkedin"></i></a></li>
+                        <li><a href="https://github.com/ethanmcneil" className="icoGitHub" title="git-hub"><i className="fa fa-github"></i></a></li>
                     </ul>
                     
                     </p>
                 </div>
-                <div class="col-md-5">
+                <div className="col-md-5">
                 </div>
             </div>
             <br/>
-            <div class="row">
-                <div class="col-md-2">
+            <div className="row">
+                <div className="col-md-2">
                     <div className="rob">
-                    <img src="images/team-photos/robpic.jpg" class="rounded-circle image-props" alt="Robert" />
+                    <img alt="Rob" src="images/team-photos/robpic.jpg" className="rounded-circle" />
                 </div>
                 </div>
-                <div class="col-md-5">
+                <div className="col-md-5">
                     <h2>
                         Robert Nickle
                     </h2>
@@ -87,23 +87,23 @@ const AboutContent = ({animateProfileName}) => {
                         diseases and find solutions to global issues.
                     </p>
                     <p>
-                    <ul class="social-network social-circle">
-                        <li><a href="https://www.linkedin.com/in/robertnickleiv/" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="https://github.com/rnickleiv" class="icoGitHub" title="git-hub"><i class="fa fa-github"></i></a></li> 
+                    <ul className="social-network social-circle">
+                        <li><a href="https://www.linkedin.com/in/robertnickleiv/" className="icoLinkedin" title="Linkedin"><i className="fa fa-linkedin"></i></a></li>
+                        <li><a href="https://github.com/rnickleiv" className="icoGitHub" title="git-hub"><i className="fa fa-github"></i></a></li> 
                     </ul>
                     </p>
                 </div>
-                <div class="col-md-5">
+                <div className="col-md-5">
                 </div>
             </div>
             <br/>
-            <div class="row">
-                <div class="col-md-2">
-                    <div class="pat">
-                    <img src="images/team-photos/patrick.jpg" alt="Patrick" className='image-props' />
+            <div className="row">
+                <div className="col-md-2">
+                    <div className="pat">
+                    <img alt="Patrick" src="images/team-photos/patrick.jpg" />
                     </div>
                     </div>
-                <div class="col-md-5">
+                <div className="col-md-5">
                     <h2>
                         Patrick B.
                     </h2>
@@ -111,13 +111,13 @@ const AboutContent = ({animateProfileName}) => {
                         Patrick Barriente is a husband, musician, and Developer.  With a passion to create with excellence. 
                     </p>
                     <p>
-                        <ul class="social-network social-circle">
-                            <li><a href="https://www.linkedin.com/in/patrick-barriente-12abb992/" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="http://github.com/pbarriente" class="icoGitHub" title="git-hub"><i class="fa fa-github"></i></a></li>
+                        <ul className="social-network social-circle">
+                            <li><a href="https://www.linkedin.com/in/patrick-barriente-12abb992/" className="icoLinkedin" title="Linkedin"><i className="fa fa-linkedin"></i></a></li>
+                            <li><a href="http://github.com/pbarriente" className="icoGitHub" title="git-hub"><i className="fa fa-github"></i></a></li>
                         </ul>
                     </p>
                 </div>
-                <div class="col-md-5">
+                <div className="col-md-5">
                 </div>
             </div>
         </div>
@@ -130,7 +130,7 @@ class AboutPageView extends React.Component {
     
     animateHeaderH1(){
         var textWrapper = document.querySelector('.ml2');
-        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span className='letter'>$&</span>");
         anime.timeline({loop: false})
         .add({
             targets: '.ml2 .letter',
@@ -190,15 +190,15 @@ class AboutPageView extends React.Component {
     render(){
         return (
             <div className="container-fluid about">
-                <div class="jumbotron card card-image about-header">
-                    <div class="text-center py-2 px-4">
+                <div className="jumbotron card card-image about-header">
+                    <div className="text-center py-2 px-4">
                         <div>
-                            <h1 class="display-4 pt-3 mb-5 ml2">We Dream Big with Jesus.... Team &lt;CodeChefs &#47;&gt;</h1>
-                            <p class="p-text mx-4 mb-3">We are a group of software engineers who attend <strong>Bethel School of Technology</strong> in Redding,Ca. This application is a recipe sharing application designed to allow users to share their recipes with others!
+                            <h1 className="display-4 pt-3 mb-5 ml2">We Dream Big with Jesus.... Team &lt;CodeChefs &#47;&gt;</h1>
+                            <p className="p-text mx-4 mb-3">We are a group of software engineers who attend <strong>Bethel School of Technology</strong> in Redding,Ca. This application is a recipe sharing application designed to allow users to share their recipes with others!
                             <br />Our Stack? RAJMN<br /></p>
                             <p id="js-stack-icons" className='mx-4 ml15 hide'><ReactIcon className="mx-2 stack-icon" /><Java className="mx-2 stack-icon" /><MySQL className="mx-2 stack-icon" /><Node className="mx-2 stack-icon" /></p>
                             <p className="my-4">
-                            <a href="https://github.com/bethel-school-of-technology/cs-recipe-sharing-frontend" target="_blank" rel="noopener noreferrer" className="btn btn-outline-light mx-4"><i class="fa fa-github left"></i> Front End</a> <a href="https://github.com/bethel-school-of-technology/cs-recipe-sharing-backend" rel="noopener noreferrer" target="_blank" className="btn btn-outline-light"><i class="fa fa-github left"></i> Back End</a>
+                            <a href="https://github.com/bethel-school-of-technology/cs-recipe-sharing-frontend" target="_blank" rel="noopener noreferrer" className="btn btn-outline-light mx-4"><i className="fa fa-github left"></i> Front End</a> <a href="https://github.com/bethel-school-of-technology/cs-recipe-sharing-backend" rel="noopener noreferrer" target="_blank" className="btn btn-outline-light"><i className="fa fa-github left"></i> Back End</a>
                             </p>
                         </div>
                     </div>
