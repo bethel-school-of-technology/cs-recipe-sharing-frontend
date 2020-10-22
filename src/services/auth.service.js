@@ -60,7 +60,8 @@ class AuthService {
         let user = {
             username: username,
             email: email,
-            password: password
+            password: password,
+            savedRecipes: [0]
         }
         user = JSON.stringify(user);
 
