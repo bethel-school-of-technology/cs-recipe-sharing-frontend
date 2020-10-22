@@ -5,19 +5,27 @@ import MySQL from '../../icon-components/MySQL';
 import ReactIcon from '../../icon-components/ReactIcon';
 import Node from '../../icon-components/Node';
 import './style.css';
+import JavaScript from '../../icon-components/JavaScript';
+import PHP from '../../icon-components/Php';
+import Csharp from '../../icon-components/C-Sharp';
+import Vue from '../../icon-components/Vue';
 
-const AboutContent = () => {
+const AboutContent = ({animateProfileName}) => {
     return(
         <div class="container">
-            <div class="row">
+            <div class="row row-blake profile-row">
                 <div class="col-md-2">
                     <div className="blake">
-                        <img alt="Blake" src="images/team-photos/blake.jpg" class="rounded-circle img-props" />
+                        <img src="images/team-photos/blake.jpg" alt="Blake" class="rounded-circle img-props" />
                     </div>
                 </div>
                 <div class="col-sm-5">
-                    <h2>
-                        Blake Wood Jr.
+                    <h2 class="ml1">
+                        <span class="text-wrapper">
+                            <span class="line line1"></span>
+                            <span class="letters">Blake Wood Jr.</span>
+                            <span class="line line2"></span>
+                        </span>
                     </h2>
                     <p>
                         Blake is a Software Engineer in Northern California with a passion for Front End Engineering and Design. He grew up surfing the beaches of San Diego, Ca
@@ -25,20 +33,20 @@ const AboutContent = () => {
                     </p>
                     <p>
                     <ul class="social-network social-circle">
-                        <li><a href="https://www.linkedin.com/in/blakewoodjr/" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="https://github.com/blakewood84" class="icoGitHub" title="git-hub"><i class="fa fa-github"></i></a></li>
+                        <li><a href="https://www.linkedin.com/in/blakewoodjr/" target="_blank" rel="noopener noreferrer" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="https://github.com/blakewood84" target="_blank" rel="noopener noreferrer" class="icoGitHub" title="git-hub"><i class="fa fa-github"></i></a></li>
                     </ul>
-                
                     </p>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-5 lang-icons-anime">
+                    <div className="d-flex justify-content-center align-items-center lang-icon-margin"><ReactIcon className="mx-2 lang-icon" /> <JavaScript className="mx-2 lang-icon" /> <PHP className="my-4 mx-2 lang-icon" /> <Csharp className="mx-2 lang-icon" /> <Vue className="mx-2 my-4 lang-icon" /><Node className="mx-2 my-4 lang-icon" /></div>
                 </div>
             </div>
             <br/>
             <div class="row">
                 <div class="col-md-2">
                     <div class="ethan">
-                    <img alt="" src="images/team-photos/ethan.jpg" class="rounded-circle" />
+                    <img src="images/team-photos/ethan.jpg" alt="Ethan" class="rounded-circle image-props" />
                     </div>
                 </div>
                 <div class="col-md-5">
@@ -66,7 +74,7 @@ const AboutContent = () => {
             <div class="row">
                 <div class="col-md-2">
                     <div className="rob">
-                    <img alt="Rob Picture" src="images/team-photos/robpic.jpg" class="rounded-circle" />
+                    <img src="images/team-photos/robpic.jpg" class="rounded-circle image-props" alt="Robert" />
                 </div>
                 </div>
                 <div class="col-md-5">
@@ -92,7 +100,7 @@ const AboutContent = () => {
             <div class="row">
                 <div class="col-md-2">
                     <div class="pat">
-                    <img alt="Bootstrap Image Preview" src="images/team-photos/patrick.jpg" />
+                    <img src="images/team-photos/patrick.jpg" alt="Patrick" className='image-props' />
                     </div>
                     </div>
                 <div class="col-md-5">
@@ -148,11 +156,35 @@ class AboutPageView extends React.Component {
                 delay: (el, i) => 800 * i
             });
         }, 1300);
-        
+    }
+    animateProfileName(){
+        var textWrapper = document.querySelector('.ml1 .letters');
+        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+        anime.timeline({loop: false})
+        .add({
+            targets: '.ml1 .letter',
+            scale: [0.3,1],
+            opacity: [0,1],
+            translateZ: 0,
+            easing: "easeOutExpo",
+            duration: 600,
+            delay: (el, i) => 70 * (i+1)
+        }).add({
+            targets: '.ml1 .line',
+            scaleX: [0,1],
+            opacity: [0.5,1],
+            easing: "easeOutExpo",
+            duration: 700,
+            offset: '-=875',
+            delay: (el, i, l) => 80 * (l - i)
+        });
     }
     componentDidMount(){
         this.animateHeaderH1();
         this.animateStackIcons();
+    }
+    componentDidUpdate(){
+        
     }
 
     render(){
@@ -171,7 +203,7 @@ class AboutPageView extends React.Component {
                         </div>
                     </div>
                 </div>
-                <AboutContent />
+                <AboutContent animateProfileName={this.animateProfileName.bind(this)} />
             </div>
         )
     }
