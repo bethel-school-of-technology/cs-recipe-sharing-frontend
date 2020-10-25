@@ -35,10 +35,8 @@ const Login = withRouter(({ history }) => {
                     alert("Invalid Username or Password")
                 }
                 else if (response.status === 200) {
-                        AuthService.saveDetails().then(res => {
-                        console.log(res);
-                        window.location ="http://localhost:3000/";
-                    });
+                    AuthService.saveDetails();
+                    window.location ="http://localhost:3000/"
                 }
         })
     };
