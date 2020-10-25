@@ -57,7 +57,7 @@ const Signup = () => {
 
     }
     return (
-        <div className="container d-flex justify-content-center">
+        <div className="container d-flex justify-content-center" style={{marginBottom:"100px"}}>
             <form onSubmit={handleSubmitRegisterUser}>
                 <div className="card signup">
                     <div className="text-center intro"> <i className="fas fa-user-circle fa-10x"></i></div>
@@ -67,7 +67,7 @@ const Signup = () => {
                         <div className="inputbox">  <input className='form-control pass' placeholder="Password" type="password" value={registerPassword} onChange={e => setRegisterPassword(e.target.value)} /><i onClick={showPassword} className="fas fa-eye pass-eye"></i><i className="fa fa-lock pass-icon"></i> </div>
                         <div className="inputbox">  <input className='form-control pass-conf' placeholder="Confirm password" type="password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} /><i onClick={showPasswordConfirm} className="fas fa-eye pass-eye-confirm"></i><i className="fa fa-lock pass-icon"></i> </div>
                     </div>
-                    <div className="mt-2"> <button className="btn btn-primary btn-block">LOGIN <i className="fas fa-sign-in-alt"></i></button> </div>
+                    <div className="mt-2"> <button className="btn btn-primary btn-block">Sign Up!</button> </div>
                 </div>
             </form>
         </div>

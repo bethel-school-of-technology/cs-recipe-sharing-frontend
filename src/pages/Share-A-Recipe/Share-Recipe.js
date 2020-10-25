@@ -6,9 +6,14 @@ import AuthService from "../../services/auth.service";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-let currentUser = AuthService.getCurrentUser();
+
+
 
 const ShareRecipe = withRouter(({ history }) => {
+  
+  AuthService.saveDetails();
+  let currentUser = AuthService.getCurrentUser();
+  console.log(currentUser);
 
   const [recipeId, setID] = useState(0);
   const [title, setTitle] = useState("");
@@ -94,7 +99,6 @@ const ShareRecipe = withRouter(({ history }) => {
   if(history.location.pathname.includes("share-recipe") && recipeId > 0) {
     window.location.reload();
   }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     let headers = {
@@ -121,7 +125,7 @@ const ShareRecipe = withRouter(({ history }) => {
             headers: headers,
           });
           if (response.status === 200) {
-            window.alert("Your Update Was Successful!");
+            window.alert('Your Update Was Successful!');
             history.push("/");
           } else {
             window.alert("Something went wrong. Try again.");
