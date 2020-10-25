@@ -42,28 +42,82 @@
 }
 
 .about .row.profile-row:hover {
-    background-color: #c4c4c473;
+    _background-color: #c4c4c473;
 }
 
-/** BLAKE PROFILE ANIME **/
+/** PROFILE ANIME **/
 .lang-icon {
-    height:75px;
-    visibility: hidden;
+    height:65px;
+    opacity: 0;
+    transition: opacity 1s ease;
 }
-.about .row-blake .lang-icon-margin {
+.about .row-anime h2 {
+    overflow: hidden;
+}
+.about .row-anime h2 span.content-name {
+    width:100%;
+    position: relative;
+}
+.about .row-anime span.content-name::after {
+    content:"";
+    border-bottom: 2px solid #E05F15;
+    width:100%;
+    height:100%;
+    top:2px;
+    left:-100%;
+    position: absolute;
+    transition: all .9s ease;
+}
+.about .row-anime:hover span.content-name::after {
+    transform: translateX(100%);
+}
+
+.about .row-anime img.rounded-circle {
+    box-shadow: 0 0 0 3px #E05F15;
+    transition: box-shadow .5s ease;  
+}
+.about .row-anime:hover img.rounded-circle {
+    box-shadow: 0px 0px 10px 2px rgb(46, 69, 201);
+}
+.about .row-anime {
+    overflow: hidden;
+    transition: all 2s ease;
+}
+.about .row-anime .lang-icon-margin {
+    height:100%;
+    margin-left:50px;
+    width:100%;
     margin-top:30px;
 }
-.about .row-blake .lang-icon {
-    visibility: hidden;
-    transition: ease-out;
+.about .row-anime:hover .lang-icon {
+    opacity: 1;
 }
-.about .row-blake:hover .lang-icon {
-    visibility: visible;
-    animation-name: show-icons;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-    transition: ease-in;
+.about .row-anime .lang-icon-margin::before {
+    content: "";
+    position: absolute;
+    width:100%;
+    height:100%;
+    right:-525px;
+    border-top:2px solid #125f7e;
+    transition: all 1s ease;
 }
+.about .row-anime .lang-icon-margin::after {
+    content: "";
+    position: absolute;
+    width:100%;
+    height:100%;
+    right:-525px;
+    border-bottom:2px solid #125f7e;
+    transition:all 1s ease;
+}
+.about .row-anime:hover .lang-icon-margin::after {
+    transform: translateX(-100%);
+}
+.about .row-anime:hover .lang-icon-margin::before {
+    transform: translateX(-100%);
+}
+
+
 @keyframes show-icons {
     from {
         opacity: 0;
@@ -73,19 +127,7 @@
     }
 }
 
-.about .row-blake h2.profile-name {
-    display:inline-block;
-}
-.about .row-blake:hover h2.profile-name {
-    display:none;
-}
 
-.about .row-blake h2.profile-name-anime {
-    _display:none;
-}
-.about .row-blake:hover h2.profile-name-anime {
-    _display:inline-block;
-}
 .ml1 .letter {
 display: inline-block;
 line-height: 1em;
