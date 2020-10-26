@@ -1,0 +1,155 @@
+.about .p-text {
+    font-size:1.1rem!important;
+}
+.about .stack-icon{
+    display:inline-block;
+    vertical-align: initial;
+    height:90px;
+}
+.about .hide {
+    visibility: hidden;
+}
+.about .show {
+    visibility: visible;
+}
+
+.about .img-align{
+    position: relative;
+    left: 100px;
+}
+.about .img-props {
+    height:150px;
+    width:150px;
+    margin-top:20px;
+}
+.about .about-header {
+    background-image: url("http://localhost:3000/images/about-page/cross-love.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.about .about-header h1 {
+    text-shadow: -1px -1px black, 1px 1px white;
+    color:#FFF2F1;
+}
+.about .about-header p {
+    color: #333232;
+}
+.icoGitHub:hover{
+    background-color:#444;
+}
+.fa-github:hover {
+    color:white;
+}
+
+.about .row.profile-row:hover {
+    _background-color: #c4c4c473;
+}
+
+/** PROFILE ANIME **/
+.lang-icon {
+    height:65px;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+.about .row-anime h2 {
+    overflow: hidden;
+}
+.about .row-anime h2 span.content-name {
+    width:100%;
+    position: relative;
+}
+.about .row-anime span.content-name::after {
+    content:"";
+    border-bottom: 2px solid #E05F15;
+    width:100%;
+    height:100%;
+    top:2px;
+    left:-100%;
+    position: absolute;
+    transition: all .9s ease;
+}
+.about .row-anime:hover span.content-name::after {
+    transform: translateX(100%);
+}
+
+.about .row-anime img.rounded-circle {
+    box-shadow: 0 0 0 3px #E05F15;
+    transition: box-shadow .5s ease;  
+}
+.about .row-anime:hover img.rounded-circle {
+    box-shadow: 0px 0px 10px 2px rgb(46, 69, 201);
+}
+.about .row-anime {
+    overflow: hidden;
+    transition: all 2s ease;
+}
+.about .row-anime .lang-icon-margin {
+    height:100%;
+    margin-left:50px;
+    width:100%;
+    margin-top:30px;
+}
+.about .row-anime:hover .lang-icon {
+    opacity: 1;
+}
+.about .row-anime .lang-icon-margin::before {
+    content: "";
+    position: absolute;
+    width:100%;
+    height:100%;
+    right:-525px;
+    border-top:2px solid #125f7e;
+    transition: all 1s ease;
+}
+.about .row-anime .lang-icon-margin::after {
+    content: "";
+    position: absolute;
+    width:100%;
+    height:100%;
+    right:-525px;
+    border-bottom:2px solid #125f7e;
+    transition:all 1s ease;
+}
+.about .row-anime:hover .lang-icon-margin::after {
+    transform: translateX(-100%);
+}
+.about .row-anime:hover .lang-icon-margin::before {
+    transform: translateX(-100%);
+}
+
+
+@keyframes show-icons {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+.ml1 .letter {
+display: inline-block;
+line-height: 1em;
+}
+
+.ml1 .text-wrapper {
+position: relative;
+display: inline-block;
+padding-top: 0.1em;
+padding-right: 0.05em;
+padding-bottom: 0.15em;
+}
+
+.ml1 .line {
+opacity: 0;
+position: absolute;
+left: 0;
+height: 3px;
+width: 100%;
+background-color: black;
+transform-origin: 0 0;
+}
+
+.ml1 .line1 { top: 0; }
+.ml1 .line2 { bottom: 0; }

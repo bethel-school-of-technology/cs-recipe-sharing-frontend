@@ -28,11 +28,12 @@ const Login = withRouter(({ history }) => {
 
     const handleSubmitLoginUser = async (e) => {
         e.preventDefault();
+        //TODO: FIX RESPONSE ERROR 403 
         AuthService.login(username, password)
             .then(response => {
                 console.log(response);
                 if(response.status !== 200){
-                    // Throw login error
+                    // Throw login error  
                     alert("Invalid Username or Password")
                 }
                 else if (response.status === 200) {          
@@ -41,7 +42,7 @@ const Login = withRouter(({ history }) => {
         })
     };
     return (
-        <div className="container d-flex justify-content-center">
+        <div className="container d-flex justify-content-center" style={{marginBottom:"200px"}}>
             <form onSubmit={handleSubmitLoginUser}>
                     <div className="card login">
                         <div className="text-center intro"> <i className="fa fa-user-astronaut fa-10x"></i></div>

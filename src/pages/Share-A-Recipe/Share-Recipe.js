@@ -6,9 +6,15 @@ import AuthService from "../../services/auth.service";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-let currentUser = AuthService.getCurrentUser();
+
+
 
 const ShareRecipe = withRouter(({ history }) => {
+  
+  AuthService.saveDetails();
+  let currentUser = AuthService.getCurrentUser();
+  console.log(currentUser);
+
   const [recipeId, setID] = useState(0);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -108,7 +114,6 @@ const ShareRecipe = withRouter(({ history }) => {
   if (history.location.pathname.includes("share-recipe") && recipeId > 0) {
     window.location.reload();
   }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     let headers = {
@@ -153,6 +158,30 @@ const ShareRecipe = withRouter(({ history }) => {
           directions: directions,
           author: currentUser.user,
           authorId: currentUser.id
+          };
+          let response = await axios.put(`${url}/api/recipe/update`, recipe, {
+            headers: headers,
+          });
+          if (response.status === 200) {
+            window.alert('Your Update Was Successful!');
+            history.push("/");
+          } else {
+            window.alert("Something went wrong. Try again.");
+            }
+            console.log(recipe);
+      }
+      else {
+      recipe = {
+        title: title,
+        description: description,
+        servingSize: parseInt(servingSize),
+        cookTime: parseInt(cookTime),
+        difficulty: difficulty,
+        ingredients: ingredients,
+        image: document.getElementById("imagePreview").src,
+        directions: directions,
+        author: currentUser.user,
+        authorId: currentUser.id
         };
         let response = await axios.post(`${url}/api/recipe/add/`, recipe, {
           headers: headers,
