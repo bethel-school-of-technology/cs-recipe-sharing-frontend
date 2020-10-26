@@ -76,6 +76,7 @@ class profilePage extends React.Component {
         // Find All Recipes that match the Author ID
         let userPostedRecipes = [];
         for(var i = 0; i < RECIPES.length; i++) {
+            console.log(RECIPES[i]);
             if(RECIPES[i].authorId === JSON.parse(localStorage.getItem("user")).id){
                 userPostedRecipes.push(RECIPES[i]);
             }
@@ -85,6 +86,7 @@ class profilePage extends React.Component {
                 }
             }
         }
+        console.log(userPostedRecipes);
         this.setState({
             isLoading: false,
             currentUser: JSON.parse(localStorage.getItem('user')),

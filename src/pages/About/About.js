@@ -1,57 +1,56 @@
 import React from 'react';
+import './style.css';
 import anime from 'animejs';
+
 import Java from '../../icon-components/Java';
 import MySQL from '../../icon-components/MySQL';
 import ReactIcon from '../../icon-components/ReactIcon';
 import Node from '../../icon-components/Node';
-import './style.css';
+import Angular from '../../icon-components/Angular';
 import JavaScript from '../../icon-components/JavaScript';
 import PHP from '../../icon-components/Php';
 import Csharp from '../../icon-components/C-Sharp';
 import Vue from '../../icon-components/Vue';
+import Html from '../../icon-components/Html';
 
 const AboutContent = ({animateProfileName}) => {
     return(
-        <div class="container">
-            <div class="row row-blake profile-row">
-                <div class="col-md-2">
+        <div className="container my-4">
+            <div className="row row-anime profile-row">
+                <div className="col-md-2">
                     <div className="blake">
-                        <img src="images/team-photos/blake.jpg" alt="Blake" class="rounded-circle img-props" />
+                        <img src="images/team-photos/blake.jpg" alt="Blake" className="rounded-circle img-props" />
                     </div>
                 </div>
-                <div class="col-sm-5">
-                    <h2 class="ml1">
-                        <span class="text-wrapper">
-                            <span class="line line1"></span>
-                            <span class="letters">Blake Wood Jr.</span>
-                            <span class="line line2"></span>
-                        </span>
+                <div className="col-sm-5">
+                    <h2 className="profile-name">
+                        <span className="content-name">Blake Wood Jr</span>
                     </h2>
                     <p>
                         Blake is a Software Engineer in Northern California with a passion for Front End Engineering and Design. He grew up surfing the beaches of San Diego, Ca
                         and has newly walked into faith as a believer in Jesus Christ.  "Work hard and dream, dream, dream.  We all have the potential for greatness with those who walk in faith with Jesus Christ!".
                     </p>
-                    <p>
-                    <ul class="social-network social-circle">
-                        <li><a href="https://www.linkedin.com/in/blakewoodjr/" target="_blank" rel="noopener noreferrer" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                        <li><a href="https://github.com/blakewood84" target="_blank" rel="noopener noreferrer" class="icoGitHub" title="git-hub"><i class="fa fa-github"></i></a></li>
-                    </ul>
-                    </p>
+                    <div>
+                        <ul className="social-network social-circle">
+                            <li><a href="https://www.linkedin.com/in/blakewoodjr/" target="_blank" rel="noopener noreferrer" className="icoLinkedin" title="Linkedin"><i className="fa fa-linkedin"></i></a></li>
+                            <li><a href="https://github.com/blakewood84" target="_blank" rel="noopener noreferrer" className="icoGitHub" title="git-hub"><i className="fa fa-github"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-md-5 lang-icons-anime">
-                    <div className="d-flex justify-content-center align-items-center lang-icon-margin"><ReactIcon className="mx-2 lang-icon" /> <JavaScript className="mx-2 lang-icon" /> <PHP className="my-4 mx-2 lang-icon" /> <Csharp className="mx-2 lang-icon" /> <Vue className="mx-2 my-4 lang-icon" /><Node className="mx-2 my-4 lang-icon" /></div>
+                <div className="col-md-5 lang-icons-anime d-flex justify-content-center align-items-center h-100">
+                    <div className="d-flex justify-content-center align-items-center lang-icon-margin p-2"><ReactIcon className="mx-2 lang-icon" /> <JavaScript className="mx-2 lang-icon" /> <PHP className="mx-2 lang-icon" /> <Csharp className="mx-2 lang-icon" /> <Vue className="mx-2 lang-icon" /><Node className="mx-2 lang-icon" /></div>
                 </div>
             </div>
             <br/>
-            <div class="row">
-                <div class="col-md-2">
-                    <div class="ethan">
-                    <img src="images/team-photos/ethan.jpg" alt="Ethan" class="rounded-circle image-props" />
+            <div className="row row-anime profile-row">
+                <div className="col-md-2">
+                    <div className="ethan my-4">
+                        <img src="images/team-photos/ethan.jpg" alt="Ethan" className="rounded-circle image-props" />
                     </div>
                 </div>
                 <div className="col-md-5">
-                    <h2>
-                        Ethan Mcneil
+                <h2 className="profile-name">
+                        <span className="content-name">Ethan Mcniel</span>
                     </h2>
                     <p>
                     Ethan McNeil is a software engineer with with a passion for changing the world through coding. 
@@ -59,65 +58,67 @@ const AboutContent = ({animateProfileName}) => {
                     (the top rated coding boot camp of 2019 and 2020 by newsweek), 
                     he works on programming remotely while living in Indiana with his wife and two kids.
                     </p>
-                    <p>
-                    <ul className="social-network social-circle">
-                        <li><a href="https://www.linkedin.com/in/ethan-mcneil/" className="icoLinkedin" title="Linkedin"><i className="fa fa-linkedin"></i></a></li>
-                        <li><a href="https://github.com/ethanmcneil" className="icoGitHub" title="git-hub"><i className="fa fa-github"></i></a></li>
-                    </ul>
-                    
-                    </p>
+                    <div>
+                        <ul className="social-network social-circle">
+                            <li><a href="https://www.linkedin.com/in/ethan-mcneil/" target="_blank" rel="noopener noreferrer" className="icoLinkedin" title="Linkedin"><i className="fa fa-linkedin"></i></a></li>
+                            <li><a href="https://github.com/ethanmcneil" target="_blank" rel="noopener noreferrer" className="icoGitHub" title="git-hub"><i className="fa fa-github"></i></a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div className="col-md-5">
+                <div className="col-md-5 lang-icons-anime d-flex justify-content-center align-items-center h-100">
+                    <div className="d-flex justify-content-center align-items-center lang-icon-margin p-2"><ReactIcon className="mx-2 lang-icon" /> <Java className="mx-2 lang-icon" /> <Angular className="mx-2 lang-icon" /> </div>
                 </div>
             </div>
             <br/>
-            <div className="row">
+            <div className="row row-anime profile-row">
                 <div className="col-md-2">
-                    <div className="rob">
+                    <div className="rob my-3">
                     <img alt="Rob" src="images/team-photos/robpic.jpg" className="rounded-circle" />
                 </div>
                 </div>
                 <div className="col-md-5">
-                    <h2>
-                        Robert Nickle
+                <h2 className="profile-name">
+                        <span className="content-name">Robert Nickle</span>
                     </h2>
                     <p>
                         I am a Husband, Father of three children, I am also Full Stack Developer with a passion to keep learning and creating new web applications.
                         I think that we can partner faith and tech to create and develop life changing applications and programs that could maybe one day cure 
                         diseases and find solutions to global issues.
                     </p>
-                    <p>
-                    <ul className="social-network social-circle">
-                        <li><a href="https://www.linkedin.com/in/robertnickleiv/" className="icoLinkedin" title="Linkedin"><i className="fa fa-linkedin"></i></a></li>
-                        <li><a href="https://github.com/rnickleiv" className="icoGitHub" title="git-hub"><i className="fa fa-github"></i></a></li> 
-                    </ul>
-                    </p>
+                    <div>
+                        <ul className="social-network social-circle">
+                            <li><a href="https://www.linkedin.com/in/robertnickleiv/" target="_blank" rel="noopener noreferrer" className="icoLinkedin" title="Linkedin"><i className="fa fa-linkedin"></i></a></li>
+                            <li><a href="https://github.com/rnickleiv" target="_blank" rel="noopener noreferrer" className="icoGitHub" title="git-hub"><i className="fa fa-github"></i></a></li> 
+                        </ul>
+                    </div>
                 </div>
-                <div className="col-md-5">
+                <div className="col-md-5 lang-icons-anime d-flex justify-content-center align-items-center h-100">
+                    <div className="d-flex justify-content-center align-items-center lang-icon-margin p-2"><ReactIcon className="mx-2 lang-icon" /> <Java className="mx-2 lang-icon" /> <Html className="mx-2 lang-icon" /> </div>
                 </div>
             </div>
             <br/>
-            <div className="row">
+            <div className="row row-anime profile-row">
                 <div className="col-md-2">
-                    <div className="pat">
-                    <img alt="Patrick" src="images/team-photos/patrick.jpg" />
+                    <div className="pat my-2">
+                    <img className="rounded-circle" height="147px" alt="Patrick" src="images/team-photos/patrick2.jpg" />
                     </div>
                     </div>
                 <div className="col-md-5">
-                    <h2>
-                        Patrick B.
+                <h2 className="profile-name">
+                        <span className="content-name">Patrick Barriente</span>
                     </h2>
                     <p>
                         Patrick Barriente is a husband, musician, and Developer.  With a passion to create with excellence. 
                     </p>
-                    <p>
+                    <div>
                         <ul className="social-network social-circle">
-                            <li><a href="https://www.linkedin.com/in/patrick-barriente-12abb992/" className="icoLinkedin" title="Linkedin"><i className="fa fa-linkedin"></i></a></li>
-                            <li><a href="http://github.com/pbarriente" className="icoGitHub" title="git-hub"><i className="fa fa-github"></i></a></li>
+                            <li><a href="https://www.linkedin.com/in/patrick-barriente-12abb992/" target="_blank" rel="noopener noreferrer" className="icoLinkedin" title="Linkedin"><i className="fa fa-linkedin"></i></a></li>
+                            <li><a href="http://github.com/pbarriente" target="_blank" rel="noopener noreferrer" className="icoGitHub" title="git-hub"><i className="fa fa-github"></i></a></li>
                         </ul>
-                    </p>
+                    </div>
                 </div>
-                <div className="col-md-5">
+                <div className="col-md-5 lang-icons-anime d-flex justify-content-center align-items-center h-100">
+                    <div className="d-flex justify-content-center align-items-center lang-icon-margin p-2"><ReactIcon className="mx-2 lang-icon" /> <Java className="mx-2 lang-icon" /> <JavaScript className="mx-2 lang-icon" /> </div>
                 </div>
             </div>
         </div>
@@ -131,6 +132,7 @@ class AboutPageView extends React.Component {
     animateHeaderH1(){
         var textWrapper = document.querySelector('.ml2');
         textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span className='letter'>$&</span>");
+
         anime.timeline({loop: false})
         .add({
             targets: '.ml2 .letter',
@@ -143,9 +145,13 @@ class AboutPageView extends React.Component {
         });
     }
     animateStackIcons(){
-        
+        let jsStackIcons = document.getElementById('js-stack-icons');
         setTimeout(function(){
-            document.getElementById('js-stack-icons').classList.remove('hide');
+            if(jsStackIcons){
+                jsStackIcons.classList.remove('hide');
+            }
+            
+            
             anime.timeline({loop: false,})
             .add({
                 targets: '.ml15 .stack-icon',
@@ -156,28 +162,6 @@ class AboutPageView extends React.Component {
                 delay: (el, i) => 800 * i
             });
         }, 1300);
-    }
-    animateProfileName(){
-        var textWrapper = document.querySelector('.ml1 .letters');
-        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-        anime.timeline({loop: false})
-        .add({
-            targets: '.ml1 .letter',
-            scale: [0.3,1],
-            opacity: [0,1],
-            translateZ: 0,
-            easing: "easeOutExpo",
-            duration: 600,
-            delay: (el, i) => 70 * (i+1)
-        }).add({
-            targets: '.ml1 .line',
-            scaleX: [0,1],
-            opacity: [0.5,1],
-            easing: "easeOutExpo",
-            duration: 700,
-            offset: '-=875',
-            delay: (el, i, l) => 80 * (l - i)
-        });
     }
     componentDidMount(){
         this.animateHeaderH1();
@@ -203,7 +187,7 @@ class AboutPageView extends React.Component {
                         </div>
                     </div>
                 </div>
-                <AboutContent animateProfileName={this.animateProfileName.bind(this)} />
+                <AboutContent />
             </div>
         )
     }
