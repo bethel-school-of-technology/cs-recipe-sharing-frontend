@@ -30,12 +30,12 @@ const Login = withRouter(({ history }) => {
         e.preventDefault();
         AuthService.login(username, password)
             .then(response => {
+                console.log(response);
                 if(response.status !== 200){
                     // Throw login error
                     alert("Invalid Username or Password")
                 }
-                else if (response.status === 200) {
-                    AuthService.saveDetails();
+                else if (response.status === 200) {          
                     window.location ="http://localhost:3000/"
                 }
         })

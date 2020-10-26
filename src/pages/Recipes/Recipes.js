@@ -77,7 +77,8 @@ const ViewRecipeCardsComponent = ({recipes, savedRecipes, currentUser}) => {
     }
 }
 
-const saveRecipe = (recipeId) => {
+const saveRecipe = async (recipeId) => {
+    console.log("Saved Recipe called");
     if(AuthService.getCurrentUser()){
     const currentUser = AuthService.getCurrentUser();
     const URL = "http://localhost:8080/api/user/my-recipe";
@@ -87,15 +88,11 @@ const saveRecipe = (recipeId) => {
         recipeId: recipeId
     }
     
-    axios({
-        url: URL,
-        method: "PUT",
-        headers:headers
-    }).then(response => {
-        if(response.status === 200){
-           console.log("Saved Recipe!")
-           let heart = document.getElementById(`js-save-${recipeId}`);
-           if(heart) {
+    axios.put(URL, "", {headers: headers}).then(response => {
+        console.log(response);
+        console.log("Saved Recipe!")
+        let heart = document.getElementById(`js-save-${recipeId}`);
+        if(heart) {
             heart.classList.toggle('far');  
             heart.classList.toggle('fas');
                if(heart.classList.contains("far")) {
@@ -106,14 +103,11 @@ const saveRecipe = (recipeId) => {
                }          
                AuthService.saveDetails();
              }
-        }
-        else {
-            console.log("Recipe could not be saved - error!")
-        }
-    })
+    });
     }
     else {
         console.log("You must be logged in to save a recipe!");
+        return "sorry";
     }
 };
 
@@ -211,6 +205,7 @@ class RecipeHomePageView extends React.Component {
     }
 
     render(){
+        
         let howManyRecipes = this.state.recipes.length;
         return(
             

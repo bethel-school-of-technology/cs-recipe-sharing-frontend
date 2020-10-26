@@ -5,7 +5,7 @@ const URL = "http://localhost:8080/";
 class AuthService {
 
     // Login Service
-    login(username, password){
+async login(username, password){
         
         // Create User
         let user = {
@@ -20,19 +20,38 @@ class AuthService {
             'Content-Type': 'application/json',
         }
 
-        return axios.post(URL + "login", user, {headers: headers})
+        let initialLogin = await axios.post(URL + "login", user, {headers: headers})
                 .then(response => {
-                    if(response.headers.authorization){
-                        user = JSON.parse(user);
-                        let user_data = {
-                            authorization: response.headers.authorization,
-                            user: user.username
-                        }
-                        localStorage.setItem("user", JSON.stringify(user_data))
-                    }
-                    return response;
-                })
-    }
+                    return response;});
+
+         if(initialLogin.headers.authorization){
+            console.log("login successful");
+            let newHeaders = {
+                authorization: initialLogin.headers.authorization,
+                username: username
+            }
+            let sendBack = await axios.get(URL + "api/user/", { headers: newHeaders }).then(res => {
+                console.log("Call for details works!" + res);
+                let userDetails = {
+                     authorization:  initialLogin.headers.authorization,
+                     user: username,
+                     email: res.data.email,
+                     id: res.data.id,
+                    savedRecipes: res.data.savedRecipes
+                 }
+                 localStorage.setItem("user", JSON.stringify(userDetails));
+                 console.log("Details should be set!");
+                 return res;
+                 });
+            return sendBack;
+         } 
+         else {
+             console.log("login didn't work");
+             return "login failed"
+         }
+
+};
+
     saveDetails(){
         let user = this.getCurrentUser();
         let headers = {
@@ -60,7 +79,8 @@ class AuthService {
         let user = {
             username: username,
             email: email,
-            password: password
+            password: password,
+            savedRecipes: [0]
         }
         user = JSON.stringify(user);
 
